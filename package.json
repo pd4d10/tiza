@@ -1,0 +1,20 @@
+{
+  "name": "cholk",
+  "version": "0.0.1",
+  "description": "Console styling for browsers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pd4d10/cholk.git"
+  },
+  "keywords": [],
+  "author": "pd4d10 <pd4d10@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pd4d10/cholk/issues"
+  },
+  "homepage": "https://github.com/pd4d10/cholk#readme"
+}
