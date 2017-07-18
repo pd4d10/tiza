@@ -1,47 +1,6 @@
-// Stringify styles
-function stringify(style) {
-  if (typeof style === 'string') {
-    return style
-  }
+import { stringify, capitalize, assign } from './utils'
 
-  return Object.keys(style)
-    .map(key => {
-      return `${key}:${style[key]}`
-    })
-    .join(';')
-}
-
-function capitalize(word) {
-  return word[0].toUpperCase() + word.slice(1)
-}
-
-function cholk(text) {
-  const result = {
-    style: stringify(cholk._style),
-    text,
-  }
-  cholk._style = {} // Reset
-  return result
-}
-
-cholk._style = {}
-cholk.log = (...args) => {
-  const results = []
-  const styles = []
-  args.forEach(arg => {
-    if (typeof arg === 'object' && arg.style) {
-      results.push(`%c${arg.text}`)
-      styles.push(arg.style)
-    } else {
-      results.push(`%c${arg}`)
-      styles.push('')
-    }
-  })
-  console.log(results.join(''), ...styles)
-}
-
-const proto = Object.create(null)
-const properties = {}
+const props = Object.create(null)
 
 // Add common colors
 // For font color and background color
@@ -64,44 +23,70 @@ const colors = [
   'whiteBright',
 ]
 colors.forEach(color => {
-  properties[color] = {
+  props[color] = {
     get() {
-      cholk._style.color = color
-      return cholk
+      return createChalk({ color }, this._styles)
     },
   }
-  properties[`bg${capitalize(color)}`] = {
+  props[`bg${capitalize(color)}`] = {
     get() {
-      cholk._style['background-color'] = color
-      return cholk
+      return createChalk({ 'background-color': color }, this._styles)
     },
   }
 })
 
 // Font style
-properties.italic = {
+props.italic = {
   get() {
-    cholk._style['font-style'] = 'italic'
-    return cholk
+    return createChalk({ 'font-style': 'italic' }, this._styles)
   },
 }
 
 // Font weight
-properties.bold = {
+props.bold = {
   get() {
-    cholk._style['font-weight'] = 'bold'
-    return cholk
+    return createChalk({ 'font-weight': 'bold' }, this._styles)
   },
 }
 
+const proto = Object.create(null)
+Object.defineProperties(proto, props)
+
 // Custom style
-proto.style = styleString => {
-  cholk._style = styleString
-  return cholk
+proto.style = styles => {
+  return createChalk(styles)
 }
 
-Object.defineProperties(proto, properties)
+proto.log = (...args) => {
+  const results = []
+  const styles = []
+  args.forEach(arg => {
+    if (typeof arg === 'object' && arg.style) {
+      results.push(`%c${arg.text}`)
+      styles.push(
+        typeof arg.style === 'string' ? arg.style : stringify(arg.style)
+      )
+    } else {
+      results.push(`%c${arg}`)
+      styles.push('')
+    }
+  })
+  console.log(results.join(''), ...styles)
+}
 
-cholk.__proto__ = proto
+function createChalk(style = {}, previousStyles) {
+  if (previousStyles) {
+    style = Object.assign(previousStyles, style)
+  }
+  function chalk(...args) {
+    return {
+      text: args.join(''),
+      style,
+    }
+  }
+  Object.setPrototypeOf(chalk, proto)
+  chalk._styles = style
+  return chalk
+}
 
-export default cholk
+module.exports = createChalk()
