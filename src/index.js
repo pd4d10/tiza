@@ -16,10 +16,12 @@ function capitalize(word) {
 }
 
 function cholk(text) {
-  return {
+  const result = {
     style: stringify(cholk._style),
     text,
   }
+  cholk._style = {} // Reset
+  return result
 }
 
 cholk._style = {}
