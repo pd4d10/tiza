@@ -76,6 +76,22 @@ colors.forEach(color => {
   }
 })
 
+// Font style
+properties.italic = {
+  get() {
+    cholk._style['font-style'] = 'italic'
+    return cholk
+  },
+}
+
+// Font weight
+properties.bold = {
+  get() {
+    cholk._style['font-weight'] = 'bold'
+    return cholk
+  },
+}
+
 // Custom style
 proto.style = styleString => {
   cholk._style = styleString

@@ -2,12 +2,13 @@
   "name": "cholk",
   "version": "0.0.1",
   "description": "Console styling for browsers",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "prettier --write --no-semi --single-quote --trailing-comma es5 src/*",
     "precommit": "npm run lint",
-    "build": "babel src -d lib"
+    "build": "babel src -d lib",
+    "prepublish": "npm run build"
   },
   "files": [
     "lib"
