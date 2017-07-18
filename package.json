@@ -1,6 +1,6 @@
 {
   "name": "cholk",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Console styling for browsers",
   "main": "lib/index.js",
   "scripts": {
