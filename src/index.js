@@ -1,17 +1,19 @@
-const colors = ['red', 'blue', 'green']
-
 // Stringify styles
-function stringify(obj) {
-  return Object.keys(obj)
+function stringify(style) {
+  if (typeof style === 'string') {
+    return style
+  }
+
+  return Object.keys(style)
     .map(key => {
-      return `${key}:${obj[key]}`
+      return `${key}:${style[key]}`
     })
     .join(';')
 }
 
 function cholk(text) {
   return {
-    style: cholk._style,
+    style: stringify(cholk._style),
     text,
   }
 }
@@ -23,7 +25,7 @@ cholk.log = (...args) => {
   args.forEach(arg => {
     if (typeof arg === 'object' && arg.style) {
       results.push(`%c${arg.text}`)
-      styles.push(stringify(arg.style))
+      styles.push(arg.style)
     } else {
       results.push(`%c${arg}`)
       styles.push('')
@@ -33,6 +35,9 @@ cholk.log = (...args) => {
 }
 
 const proto = Object.create(null)
+
+// Add common colors
+const colors = ['red', 'blue', 'green']
 const properties = colors.reduce((props, color) => {
   props[color] = {
     get() {
@@ -42,6 +47,12 @@ const properties = colors.reduce((props, color) => {
   }
   return props
 }, {})
+
+// Custom style
+proto.style = styleString => {
+  cholk._style = styleString
+  return cholk
+}
 
 Object.defineProperties(proto, properties)
 
