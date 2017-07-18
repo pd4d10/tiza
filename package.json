@@ -6,8 +6,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "prettier --write --no-semi --single-quote --trailing-comma es5 src/*",
-    "precommit": "npm run lint"
+    "precommit": "npm run lint",
+    "build": "babel src -d lib"
   },
+  "files": [
+    "lib"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pd4d10/cholk.git"
@@ -20,7 +24,12 @@
   },
   "homepage": "https://github.com/pd4d10/cholk#readme",
   "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-latest": "^6.24.1",
     "husky": "^0.14.3",
     "prettier": "^1.5.3"
+  },
+  "babel": {
+    "presets": ["latest"]
   }
 }
