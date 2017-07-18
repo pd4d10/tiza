@@ -25,12 +25,12 @@ const colors = [
 colors.forEach(color => {
   props[color] = {
     get() {
-      return createChalk({ color }, this._styles)
+      return createCholk({ color }, this._styles)
     },
   }
   props[`bg${capitalize(color)}`] = {
     get() {
-      return createChalk({ 'background-color': color }, this._styles)
+      return createCholk({ 'background-color': color }, this._styles)
     },
   }
 })
@@ -38,14 +38,14 @@ colors.forEach(color => {
 // Font style
 props.italic = {
   get() {
-    return createChalk({ 'font-style': 'italic' }, this._styles)
+    return createCholk({ 'font-style': 'italic' }, this._styles)
   },
 }
 
 // Font weight
 props.bold = {
   get() {
-    return createChalk({ 'font-weight': 'bold' }, this._styles)
+    return createCholk({ 'font-weight': 'bold' }, this._styles)
   },
 }
 
@@ -54,7 +54,7 @@ Object.defineProperties(proto, props)
 
 // Custom style
 proto.style = styles => {
-  return createChalk(styles)
+  return createCholk(styles)
 }
 
 proto.log = (...args) => {
@@ -74,19 +74,19 @@ proto.log = (...args) => {
   console.log(results.join(''), ...styles)
 }
 
-function createChalk(style = {}, previousStyles) {
+function createCholk(style = {}, previousStyles) {
   if (previousStyles) {
     style = Object.assign(previousStyles, style)
   }
-  function chalk(...args) {
+  function cholk(...args) {
     return {
       text: args.join(''),
       style,
     }
   }
-  Object.setPrototypeOf(chalk, proto)
-  chalk._styles = style
-  return chalk
+  Object.setPrototypeOf(cholk, proto)
+  cholk._styles = style
+  return cholk
 }
 
-module.exports = createChalk()
+module.exports = createCholk()
