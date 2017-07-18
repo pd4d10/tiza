@@ -25,12 +25,12 @@ const colors = [
 colors.forEach(color => {
   props[color] = {
     get() {
-      return createCholk({ color }, this._styles)
+      return createCholk({ color }, this)
     },
   }
   props[`bg${capitalize(color)}`] = {
     get() {
-      return createCholk({ 'background-color': color }, this._styles)
+      return createCholk({ 'background-color': color }, this)
     },
   }
 })
@@ -38,14 +38,14 @@ colors.forEach(color => {
 // Font style
 props.italic = {
   get() {
-    return createCholk({ 'font-style': 'italic' }, this._styles)
+    return createCholk({ 'font-style': 'italic' }, this)
   },
 }
 
 // Font weight
 props.bold = {
   get() {
-    return createCholk({ 'font-weight': 'bold' }, this._styles)
+    return createCholk({ 'font-weight': 'bold' }, this)
   },
 }
 
@@ -74,9 +74,9 @@ proto.log = (...args) => {
   console.log(results.join(''), ...styles)
 }
 
-function createCholk(style = {}, previousStyles) {
-  if (previousStyles) {
-    style = Object.assign(previousStyles, style)
+function createCholk(style = {}, previous) {
+  if (previous) {
+    style = Object.assign({}, previous._styles, style)
   }
   function cholk(...args) {
     return {
