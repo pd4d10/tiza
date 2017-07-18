@@ -1,6 +1,6 @@
 {
   "name": "cholk",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Console styling for browsers",
   "main": "lib/index.js",
   "scripts": {
@@ -31,6 +31,8 @@
     "prettier": "^1.5.3"
   },
   "babel": {
-    "presets": ["latest"]
+    "presets": [
+      "latest"
+    ]
   }
 }
