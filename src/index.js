@@ -1,27 +1,27 @@
 const colors = ['red', 'blue', 'green']
 
-function Cholk(text) {
-  this._style = {}
-  if (!this instanceof Cholk) {
-    const cholk = Object.create(null)
-    return
+function cholk(text) {
+  return {
+    style: cholk._style,
+    text,
   }
 }
+
+cholk._style = {}
 
 const proto = Object.create(null)
 const properties = colors.reduce((props, color) => {
   props[color] = {
     get() {
-      this._style.color = color
-      return this
+      cholk._style.color = color
+      return cholk
     }
   }
   return props
 }, {})
 
 Object.defineProperties(proto, properties)
-Cholk.prototype = proto
 
-const cholk = new Cholk()
+cholk.__proto__ = proto
 
 export default cholk
