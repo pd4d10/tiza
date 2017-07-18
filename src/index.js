@@ -11,6 +11,10 @@ function stringify(style) {
     .join(';')
 }
 
+function capitalize(word) {
+  return word[0].toUpperCase() + word.slice(1)
+}
+
 function cholk(text) {
   return {
     style: stringify(cholk._style),
@@ -35,18 +39,42 @@ cholk.log = (...args) => {
 }
 
 const proto = Object.create(null)
+const properties = {}
 
 // Add common colors
-const colors = ['red', 'blue', 'green']
-const properties = colors.reduce((props, color) => {
-  props[color] = {
+// For font color and background color
+const colors = [
+  'black',
+  'red',
+  'green',
+  'yellow',
+  'blue',
+  'magenta',
+  'cyan',
+  'white',
+  'gray',
+  'redBright',
+  'greenBright',
+  'yellowBright',
+  'blueBright',
+  'magentaBright',
+  'cyanBright',
+  'whiteBright',
+]
+colors.forEach(color => {
+  properties[color] = {
     get() {
       cholk._style.color = color
       return cholk
     },
   }
-  return props
-}, {})
+  properties[`bg${capitalize(color)}`] = {
+    get() {
+      cholk._style['background-color'] = color
+      return cholk
+    },
+  }
+})
 
 // Custom style
 proto.style = styleString => {
