@@ -4,7 +4,9 @@
   "description": "Console styling for browsers",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "prettier --write --no-semi --single-quote --trailing-comma es5 src/*",
+    "precommit": "npm run lint"
   },
   "repository": {
     "type": "git",
@@ -16,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/pd4d10/cholk/issues"
   },
-  "homepage": "https://github.com/pd4d10/cholk#readme"
+  "homepage": "https://github.com/pd4d10/cholk#readme",
+  "devDependencies": {
+    "husky": "^0.14.3",
+    "prettier": "^1.5.3"
+  }
 }
