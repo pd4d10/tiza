@@ -2,7 +2,7 @@
 
 Console styling for browsers
 
-# Usage
+## Usage
 
 ```js
 const cholk = require('cholk')
@@ -16,6 +16,6 @@ cholk.log(cholk.style(`
 `)('I have custom style!'))
 ```
 
-# License
+## License
 
 MIT
