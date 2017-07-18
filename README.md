@@ -1,15 +1,15 @@
-# Cholk
+# Tiza
 
 Console styling for browsers
 
 ## Usage
 
 ```js
-const cholk = require('cholk')
+import tiza from 'tiza'
 
-cholk.log(cholk.red('I am red'), cholk.blue('I am blue'))
+tiza.log(tiza.red('I am red'), tiza.blue('I am blue'))
 
-cholk.log(cholk.style(`
+tiza.log(tiza.style(`
   background: linear-gradient(to right, red, orange, yellow, green, blue);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

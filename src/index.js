@@ -25,12 +25,12 @@ const colors = [
 colors.forEach(color => {
   props[color] = {
     get() {
-      return createCholk({ color }, this)
+      return createTiza({ color }, this)
     },
   }
   props[`bg${capitalize(color)}`] = {
     get() {
-      return createCholk({ 'background-color': color }, this)
+      return createTiza({ 'background-color': color }, this)
     },
   }
 })
@@ -38,14 +38,14 @@ colors.forEach(color => {
 // Font style
 props.italic = {
   get() {
-    return createCholk({ 'font-style': 'italic' }, this)
+    return createTiza({ 'font-style': 'italic' }, this)
   },
 }
 
 // Font weight
 props.bold = {
   get() {
-    return createCholk({ 'font-weight': 'bold' }, this)
+    return createTiza({ 'font-weight': 'bold' }, this)
   },
 }
 
@@ -54,7 +54,7 @@ Object.defineProperties(proto, props)
 
 // Custom style
 proto.style = styles => {
-  return createCholk(styles)
+  return createTiza(styles)
 }
 
 proto.log = (...args) => {
@@ -74,19 +74,19 @@ proto.log = (...args) => {
   console.log(results.join(''), ...styles)
 }
 
-function createCholk(style = {}, previous) {
+function createTiza(style = {}, previous) {
   if (previous) {
     style = Object.assign({}, previous._styles, style)
   }
-  function cholk(...args) {
+  function tiza(...args) {
     return {
       text: args.join(''),
       style,
     }
   }
-  Object.setPrototypeOf(cholk, proto)
-  cholk._styles = style
-  return cholk
+  Object.setPrototypeOf(tiza, proto)
+  tiza._styles = style
+  return tiza
 }
 
-module.exports = createCholk()
+module.exports = createTiza()

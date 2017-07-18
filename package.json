@@ -1,6 +1,6 @@
 {
-  "name": "cholk",
-  "version": "0.0.4",
+  "name": "tiza",
+  "version": "0.0.1",
   "description": "Console styling for browsers",
   "main": "lib/index.js",
   "scripts": {
@@ -15,15 +15,15 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pd4d10/cholk.git"
+    "url": "git+https://github.com/pd4d10/tiza.git"
   },
   "keywords": [],
   "author": "pd4d10 <pd4d10@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/pd4d10/cholk/issues"
+    "url": "https://github.com/pd4d10/tiza/issues"
   },
-  "homepage": "https://github.com/pd4d10/cholk#readme",
+  "homepage": "https://github.com/pd4d10/tiza#readme",
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-preset-latest": "^6.24.1",
