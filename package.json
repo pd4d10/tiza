@@ -2,7 +2,7 @@
   "name": "tiza",
   "version": "0.0.5",
   "description": "Console styling for browsers",
-  "main": "lib/index.js",
+  "main": "dist/tiza.common.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "prettier --write --no-semi --single-quote --trailing-comma es5 src/*",
