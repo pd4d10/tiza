@@ -1,23 +1,28 @@
 {
   "name": "tiza",
-  "version": "0.0.1",
+  "version": "0.0.5",
   "description": "Console styling for browsers",
   "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "prettier --write --no-semi --single-quote --trailing-comma es5 src/*",
     "precommit": "npm run lint",
-    "build": "babel src -d lib",
+    "build": "rollup -c rollup.config.js",
     "prepublish": "npm run build"
   },
   "files": [
-    "lib"
+    "dist"
   ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pd4d10/tiza.git"
   },
-  "keywords": [],
+  "keywords": [
+    "browser",
+    "console",
+    "color",
+    "style"
+  ],
   "author": "pd4d10 <pd4d10@gmail.com>",
   "license": "MIT",
   "bugs": {
@@ -25,14 +30,13 @@
   },
   "homepage": "https://github.com/pd4d10/tiza#readme",
   "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-preset-latest": "^6.24.1",
+    "babel-core": "^6.25.0",
+    "babel-preset-es2015": "^6.24.1",
     "husky": "^0.14.3",
-    "prettier": "^1.5.3"
-  },
-  "babel": {
-    "presets": [
-      "latest"
-    ]
+    "prettier": "^1.5.3",
+    "rollup": "^0.45.2",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-license": "^0.4.0",
+    "rollup-plugin-uglify": "^2.0.1"
   }
 }

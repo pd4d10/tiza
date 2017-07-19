@@ -1,4 +1,4 @@
-import { stringify, capitalize, assign } from './utils'
+import { stringify, capitalize } from './utils'
 
 const props = Object.create(null)
 
@@ -89,4 +89,4 @@ function createTiza(style = {}, previous) {
   return tiza
 }
 
-module.exports = createTiza()
+export default createTiza()
