@@ -2,44 +2,60 @@ import { stringify, repeat } from './utils'
 
 class Tiza {
   constructor() {
-    this.style = {}
+    this.currentStyle = {}
     this.texts = []
     this.styles = []
   }
 
   style(s) {
-    Object.assign(this.style, s)
+    if (typeof style === 'string') {
+      this.currentStyle = style
+    } else {
+      Object.assign(this.currentStyle, s)
+    }
     return this
   }
 
   color(c) {
-    this.style.color = c
+    this.currentStyle.color = c
     return this
   }
 
   bgColor(c) {
-    this.style['background-color'] = c
+    this.currentStyle['background-color'] = c
     return this
   }
 
   bold() {
-    this.style['font-weight'] = 'bold'
+    this.currentStyle['font-weight'] = 'bold'
     return this
   }
 
   italic() {
-    this.style['font-style'] = 'italic'
+    this.currentStyle['font-style'] = 'italic'
+    return this
+  }
+
+  size(n) {
+    if (typeof n === 'number') {
+      n = `${n}px`
+    }
+    this.currentStyle['font-size'] = n
     return this
   }
 
   reset() {
-    this.style = {}
+    this.currentStyle = {}
     return this
   }
 
   log(text) {
     this.texts.push(`%c${text}`)
-    this.styles.push(stringify(this.style))
+    this.styles.push(
+      typeof this.currentStyle === 'string'
+        ? this.currentStyle
+        : stringify(this.currentStyle)
+    )
     return this
   }
 
@@ -54,7 +70,7 @@ class Tiza {
   }
 
   flush() {
-    console.log(...this.texts, ...this.styles)
+    console.log(this.texts.join(''), ...this.styles)
   }
 }
 
