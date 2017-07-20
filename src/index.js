@@ -5,6 +5,15 @@ class Tiza {
     this.currentStyles = []
     this.texts = []
     this.styles = []
+    this.log = this.log.bind(this)
+  }
+
+  getTexts() {
+    return this.texts
+  }
+
+  getStyles() {
+    return this.styles
   }
 
   style(s) {
@@ -44,14 +53,21 @@ class Tiza {
     return this
   }
 
-  log(text) {
-    this.texts.push(`%c${text}`)
+  log(...args) {
+    args.forEach(arg => {
+      if (arg instanceof Tiza) {
+        this.texts.push(...arg.getTexts())
+        this.styles.push(...arg.getStyles())
+      } else {
+        this.texts.push(`%c${arg}`)
 
-    const styles = []
-    this.currentStyles.forEach(style => {
-      styles.push(typeof style === 'string' ? style : stringify(style))
+        const styles = []
+        this.currentStyles.forEach(style => {
+          styles.push(typeof style === 'string' ? style : stringify(style))
+        })
+        this.styles.push(styles.join(';'))
+      }
     })
-    this.styles.push(styles.join(';'))
     return this
   }
 
