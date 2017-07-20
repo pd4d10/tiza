@@ -37,12 +37,12 @@ tiza()
 
   .log('Support ')
   .color('#fff')
-  .style({
-    background: 'linear-gradient(to right, red, orange, green, blue)',
-    padding: '4px',
-    'border-radius': '4px'
-  })
-  .log('Custom styles')
+  .style(`
+    background: linear-gradient(to right, red, orange, green, blue);
+    padding: 4px;
+    border-radius: 4px;
+  `)
+  .log('custom styles')
   .reset().log(' too!')
 
   .reset().newline(2).log('Give it a try! https://github.com/pd4d10/tiza')
