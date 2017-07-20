@@ -2,60 +2,56 @@ import { stringify, repeat } from './utils'
 
 class Tiza {
   constructor() {
-    this.currentStyle = {}
+    this.currentStyles = []
     this.texts = []
     this.styles = []
   }
 
   style(s) {
-    if (typeof style === 'string') {
-      this.currentStyle = style
-    } else {
-      Object.assign(this.currentStyle, s)
-    }
+    this.currentStyles.push(s)
     return this
   }
 
   color(c) {
-    this.currentStyle.color = c
+    this.currentStyles.push({ color: c })
     return this
   }
 
   bgColor(c) {
-    this.currentStyle['background-color'] = c
+    this.currentStyles.push({ 'background-color': c })
     return this
   }
 
   bold() {
-    this.currentStyle['font-weight'] = 'bold'
+    this.currentStyles.push({ 'font-weight': 'bold' })
     return this
   }
 
   italic() {
-    this.currentStyle['font-style'] = 'italic'
+    this.currentStyles.push({ 'font-style': 'italic' })
     return this
   }
 
   size(n) {
-    if (typeof n === 'number') {
-      n = `${n}px`
-    }
-    this.currentStyle['font-size'] = n
+    this.currentStyles.push({
+      'font-size': typeof n === 'number' ? `${n}px` : n,
+    })
     return this
   }
 
   reset() {
-    this.currentStyle = {}
+    this.currentStyles = []
     return this
   }
 
   log(text) {
     this.texts.push(`%c${text}`)
-    this.styles.push(
-      typeof this.currentStyle === 'string'
-        ? this.currentStyle
-        : stringify(this.currentStyle)
-    )
+
+    const styles = []
+    this.currentStyles.forEach(style => {
+      styles.push(typeof style === 'string' ? style : stringify(style))
+    })
+    this.styles.push(styles.join(';'))
     return this
   }
 
