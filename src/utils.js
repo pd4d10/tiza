@@ -7,6 +7,6 @@ export function stringify(style) {
     .join(';')
 }
 
-export function capitalize(word) {
-  return word[0].toUpperCase() + word.slice(1)
+export function repeat(text, count) {
+  return Array(count + 1).join(text)
 }
