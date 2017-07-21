@@ -31,8 +31,7 @@ to your HTML file, or download `tiza.js` or `tiza.min.js` on `dist` folder
 ```js
 import tiza from 'tiza'
 
-tiza()                // Create an instance first
-  .color('#fff')      // Set color, all CSS colors are supported
+tiza.color('#fff')    // Set color, all CSS colors are supported
   .bgColor('purple')  // Set background color
   .bold()             // Set bold font
   .italic()           // Set italic font
@@ -66,10 +65,10 @@ tiza()                // Create an instance first
 To reuse styles, just make them nested like this:
 
 ```js
-const error = tiza().color('red').text
-const info = tiza().bold().bgColor('yellow').text
+const error = tiza.color('red').text
+const info = tiza.bold().bgColor('yellow').text
 
-tiza().log(
+tiza.log(
   error('I am some error'),
   'I am some normal message',
   error('I am some error again!'),
@@ -96,58 +95,49 @@ Find 'Styling console output with CSS'
 
 ## API
 
-First call `tiza` to get an instance:
-
-```js
-import tiza from 'tiza'
-const instance = tiza()
-```
-
-Then `instance` has methods as follows, support chaining call.
-
-### .color(c: string)
+### tiza.color(color: string)
 
 Set font color. All CSS colors are supported.
 
-### .bgColor(c: string)
+### tiza.bgColor(color: string)
 
 Set background color. All CSS colors are supported too.
 
-### .bold()
+### tiza.bold()
 
 Set bold font.
 
-### .italic()
+### tiza.italic()
 
 Set italic font.
 
-### .size(s: number | string)
+### tiza.size(size: number | string)
 
 Set font size. If argument is a number, will convert it to `px`.
 
-### .style(s: string)
+### tiza.style(style: string)
 
 Set custom style, using inline style format.
 
-### .reset()
+### tiza.reset()
 
 Reset styles set before.
 
-### text(...args: string[])
+### tiza.text(...args: string[])
 
 Add text(s), support multiple arguments. Every text added here will be styled with styles set previously.
 
 Notice that every argument will be converted to string, and there will be no space between them(This behaviour is different with `console.log`). If you want to add a space, use `text('a').space().text('b')`
 
-### space(count: number)
+### tiza.space(count: number)
 
 Add space. The default count is 1.
 
-### newline(count: number)
+### tiza.newline(count: number)
 
 Add newline. The default count is 1.
 
-### log()
+### tiza.log()
 
 Log all texts to console. Always remember to call `log` at last.
 
