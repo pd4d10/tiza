@@ -1,57 +1,76 @@
 # Tiza
 
-Console styling for browsers
+Console styling for browsers. Demo here: https://pd4d10.github.io/tiza/
+
+<img src="assets/demo.png" alt="demo" width="462">
+
+## Installation
+
+### NPM
+
+```sh
+npm install --save tiza
+```
+
+### UMD bundle
+
+Add `<script src="https://rawgit.com/pd4d10/tiza/master/dist/tiza.min.js"></script>` to your HTML file
+
+Or download [dist/tiza.min.js](dist/tiza.min.js)
 
 ## Usage
 
 ```js
-import tiza from 'tiza'
+tiza()                // Create an instance first
+  .color('#fff')      // Set color, all CSS colors are supported
+  .bgColor('purple')  // Set background color
+  .bold()             // Set bold font
+  .italic()           // Set italic font
+  .size(20)           // Set font size
 
-tiza()
-  .color('red').size(16).log('Tiza')
-  .reset().log(' is a tiny library for browsers\' console styling.')
-
-  .newline(2)
-
-  .log('Support')
-  .space().color('#CC3399').log('All')
-  .space().color('#FF6666').log('CSS')
-  .space().color('#336699').log('colors')
-  .reset().log(',')
-
-  .space().color('#fff').bgColor('blue').log('background color')
-
-  .reset()
-  .log(', ')
-  .bold().log('bold')
-
-  .reset()
-  .log(', ')
-  .italic().log('italic')
-
-  .reset()
-  .log(', and ')
-  .size(20).log('size')
-
-  .reset().newline(2)
-
-  .log('Support ')
-  .color('#fff')
+  // Support custom styles too!
   .style(`
-    background: linear-gradient(to right, red, orange, green, blue);
     padding: 4px;
-    border-radius: 4px;
+    border-radius: 2px;
   `)
-  .log('custom styles')
-  .reset().log(' too!')
 
-  .reset().newline(2).log('Give it a try! https://github.com/pd4d10/tiza')
+  // After styles done right, it's time to add text now
+  .text('Hey, I have styling now!')
 
-  // Always remember to call `flush` at last to put all to console
-  .flush()
+  .space(8) // Add spaces
+  .text('Hey, I am far away from previous one')
+
+  .newline(2) // Add newline
+
+  .reset() // Reset all styles set before
+
+  .text('I lost my styles, because `reset` is called')
+
+  .log() // log all texts above to console
 ```
 
-## API
+**Always remember** to call `log` method at last.
+
+### Styles reusing
+
+To reuse styles, just make them nesting like this:
+
+```js
+const error = tiza().color('red').text
+const info = tiza().bold().bgColor('yellow').text
+
+tiza().log(
+  error('I am some error'),
+  'I am some normal message',
+  error('I am some error again!'),
+  info(
+    'I am some info',
+    error('I am still some error!')
+  ),
+)
+```
+
+Notice that it will not extend outside texts' styles.
 
 ## License
 
