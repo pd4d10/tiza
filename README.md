@@ -1,6 +1,6 @@
 # Tiza
 
-Console styling for browsers. Demo here: https://pd4d10.github.io/tiza/
+Console styling for browsers. [Demo here](https://pd4d10.github.io/tiza/)
 
 <img src="assets/demo.png" alt="demo" width="462">
 
@@ -14,13 +14,17 @@ npm install --save tiza
 
 ### UMD bundle
 
-Add `<script src="https://rawgit.com/pd4d10/tiza/master/dist/tiza.min.js"></script>` to your HTML file
+Add
 
-Or download [dist/tiza.min.js](dist/tiza.min.js)
+`<script src="https://rawgit.com/pd4d10/tiza/master/dist/tiza.min.js"></script>`
+
+to your HTML file, or download `tiza.js` or `tiza.min.js` on `dist` folder
 
 ## Usage
 
 ```js
+import tiza from 'tiza'
+
 tiza()                // Create an instance first
   .color('#fff')      // Set color, all CSS colors are supported
   .bgColor('purple')  // Set background color
@@ -71,6 +75,62 @@ tiza().log(
 ```
 
 Notice that it will not extend outside texts' styles.
+
+## API
+
+First call `tiza` to get an instance:
+
+```js
+const ins = tiza()
+```
+
+Then `ins` has methods as follows. Every 
+
+### .color(color: string)
+
+Set font color. All CSS colors are supported.
+
+### .bgColor(color: string)
+
+Set background color. All CSS colors are supported too.
+
+### .bold()
+
+Set bold font.
+
+### .italic()
+
+Set italic font.
+
+### .size(s: number | string)
+
+Set font size. If argument is a number, will convert it to `px`.
+
+### .style(style: string)
+
+Set custom style, using inline style format.
+
+### .reset()
+
+Reset styles set before.
+
+### text(...args: string[])
+
+Add text(s), support multiple arguments. Every text added here will be styled with styles set previously.
+
+Notice that every argument will convert to string, and there will be no space between them(This behaviour is different with `console.log`). If you want to add a space, use `text('a').space().text('b')`
+
+### space(count: number)
+
+Add space. The default count is 1.
+
+### newline(count: number)
+
+Add newline. The default count is 1.
+
+### log
+
+Log all texts to console. Always remember to call `log` at last.
 
 ## License
 
