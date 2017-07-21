@@ -16,7 +16,9 @@ npm install --save tiza
 
 Add
 
-`<script src="https://rawgit.com/pd4d10/tiza/master/dist/tiza.min.js"></script>`
+```html
+<script src="https://rawgit.com/pd4d10/tiza/master/dist/tiza.min.js"></script>
+```
 
 to your HTML file, or download `tiza.js` or `tiza.min.js` on `dist` folder
 
@@ -57,7 +59,7 @@ tiza()                // Create an instance first
 
 ### Styles reusing
 
-To reuse styles, just make them nesting like this:
+To reuse styles, just make them nested like this:
 
 ```js
 const error = tiza().color('red').text
@@ -81,16 +83,16 @@ Notice that it will not extend outside texts' styles.
 First call `tiza` to get an instance:
 
 ```js
-const ins = tiza()
+const instance = tiza()
 ```
 
-Then `ins` has methods as follows. Every 
+Then `instance` has methods as follows, support chaining call.
 
-### .color(color: string)
+### .color(c: string)
 
 Set font color. All CSS colors are supported.
 
-### .bgColor(color: string)
+### .bgColor(c: string)
 
 Set background color. All CSS colors are supported too.
 
@@ -106,7 +108,7 @@ Set italic font.
 
 Set font size. If argument is a number, will convert it to `px`.
 
-### .style(style: string)
+### .style(s: string)
 
 Set custom style, using inline style format.
 
