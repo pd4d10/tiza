@@ -4,7 +4,7 @@
   "description": "Console styling for browsers",
   "main": "dist/tiza.common.js",
   "scripts": {
-    "test": "karma start",
+    "test": "NODE_ENV=test karma start",
     "lint": "prettier --write --no-semi --single-quote --trailing-comma es5 src/* test/* rollup.config.js",
     "precommit": "npm run lint",
     "build": "rollup -c rollup.config.js",
@@ -31,12 +31,14 @@
   "homepage": "https://github.com/pd4d10/tiza#readme",
   "devDependencies": {
     "babel-core": "^6.25.0",
+    "babel-plugin-istanbul": "^4.1.4",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-es2015": "^6.24.1",
     "husky": "^0.14.3",
     "jasmine-core": "^2.6.4",
     "karma": "^1.7.0",
     "karma-chrome-launcher": "^2.2.0",
+    "karma-coverage": "^1.1.1",
     "karma-firefox-launcher": "^1.0.1",
     "karma-jasmine": "^1.1.0",
     "karma-rollup-preprocessor": "^4.0.1",
