@@ -44,6 +44,7 @@
     "karma-coverage": "^1.1.1",
     "karma-firefox-launcher": "^1.0.1",
     "karma-jasmine": "^1.1.0",
+    "karma-phantomjs-launcher": "^1.0.4",
     "karma-rollup-preprocessor": "^4.0.1",
     "karma-safari-launcher": "^1.0.0",
     "prettier": "^1.5.3",
