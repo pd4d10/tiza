@@ -1,5 +1,5 @@
 /**
- * Tiza v0.0.5
+ * Tiza v1.0.0
  * Copyright (c) 2017 pd4d10
  * Released under the MIT License.
  * https://github.com/pd4d10/tiza
@@ -10,104 +10,121 @@
 	(global.tiza = factory());
 }(this, (function () { 'use strict';
 
-// Stringify styles
-function stringify(style) {
-  return Object.keys(style).map(function (key) {
-    return key + ':' + style[key];
-  }).join(';');
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function repeat(text, count) {
+  return Array(count + 1).join(text);
 }
 
-function capitalize(word) {
-  return word[0].toUpperCase() + word.slice(1);
-}
+var Tiza = function Tiza() {
+  var currentStyles = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var texts = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+  var styles = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+  _classCallCheck(this, Tiza);
 
-var props = Object.create(null);
+  _initialiseProps.call(this);
 
-// Add common colors
-// For font color and background color
-var colors = ['black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white', 'gray', 'redBright', 'greenBright', 'yellowBright', 'blueBright', 'magentaBright', 'cyanBright', 'whiteBright'];
-colors.forEach(function (color) {
-  props[color] = {
-    get: function get() {
-      return createTiza({ color: color }, this);
-    }
+  this._currentStyles = currentStyles;
+  this._texts = texts;
+  this._styles = styles;
+};
+
+var _initialiseProps = function _initialiseProps() {
+  var _this = this;
+
+  this.getCurrentStyles = function () {
+    return _this._currentStyles;
   };
-  props['bg' + capitalize(color)] = {
-    get: function get() {
-      return createTiza({ 'background-color': color }, this);
-    }
+
+  this.getTexts = function () {
+    return _this._texts;
   };
-});
 
-// Font style
-props.italic = {
-  get: function get() {
-    return createTiza({ 'font-style': 'italic' }, this);
-  }
+  this.getStyles = function () {
+    return _this._styles;
+  };
+
+  this.style = function (s) {
+    return new Tiza([].concat(_toConsumableArray(_this._currentStyles), [s]), _this._texts, _this._styles);
+  };
+
+  this.color = function (c) {
+    return _this.style('color:' + c);
+  };
+
+  this.bgColor = function (c) {
+    return _this.style('background-color:' + c);
+  };
+
+  this.bold = function () {
+    return _this.style('font-weight:bold');
+  };
+
+  this.italic = function () {
+    return _this.style('font-style:italic');
+  };
+
+  this.size = function (n) {
+    var s = typeof n === 'number' ? n + 'px' : n; // Convert number to px
+    return _this.style('font-size:' + s);
+  };
+
+  this.reset = function () {
+    return new Tiza([], _this._texts, _this._styles);
+  };
+
+  this.text = function () {
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    var texts = [].concat(_toConsumableArray(_this._texts));
+    var styles = [].concat(_toConsumableArray(_this._styles));
+    args.forEach(function (arg) {
+      if (arg instanceof Tiza) {
+        texts.push.apply(texts, _toConsumableArray(arg.getTexts()));
+        styles.push.apply(styles, _toConsumableArray(arg.getStyles()));
+      } else {
+        texts.push(arg);
+        styles.push(_this._currentStyles.join(';'));
+      }
+    });
+    return new Tiza(_this._currentStyles, texts, styles);
+  };
+
+  this.space = function () {
+    var count = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+    return _this.text(repeat(' ', count));
+  };
+
+  this.newline = function () {
+    var count = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+    return _this.text(repeat('\n', count));
+  };
+
+  this.log = function () {
+    var _console;
+
+    var ins = _this.text.apply(_this, arguments);
+    (_console = console).log.apply(_console, [ins.getTexts().map(function (t) {
+      return '%c' + t;
+    }).join('')].concat(_toConsumableArray(ins._styles)));
+    return new Tiza(ins.getCurrentStyles(), [], []);
+  };
 };
 
-// Font weight
-props.bold = {
-  get: function get() {
-    return createTiza({ 'font-weight': 'bold' }, this);
-  }
-};
-
-var proto = Object.create(null);
-Object.defineProperties(proto, props);
-
-// Custom style
-proto.style = function (styles) {
-  return createTiza(styles);
-};
-
-proto.log = function () {
-  var _console;
-
+// Factory function
+function tiza() {
   for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
     args[_key] = arguments[_key];
   }
 
-  var results = [];
-  var styles = [];
-  args.forEach(function (arg) {
-    if ((typeof arg === 'undefined' ? 'undefined' : _typeof(arg)) === 'object' && arg.style) {
-      results.push('%c' + arg.text);
-      styles.push(typeof arg.style === 'string' ? arg.style : stringify(arg.style));
-    } else {
-      results.push('%c' + arg);
-      styles.push('');
-    }
-  });
-  (_console = console).log.apply(_console, [results.join('')].concat(styles));
-};
-
-function createTiza() {
-  var style = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var previous = arguments[1];
-
-  if (previous) {
-    style = Object.assign({}, previous._styles, style);
-  }
-  function tiza() {
-    for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-      args[_key2] = arguments[_key2];
-    }
-
-    return {
-      text: args.join(''),
-      style: style
-    };
-  }
-  Object.setPrototypeOf(tiza, proto);
-  tiza._styles = style;
-  return tiza;
+  return new (Function.prototype.bind.apply(Tiza, [null].concat(args)))();
 }
 
-var index = createTiza();
-
-return index;
+return tiza;
 
 })));
