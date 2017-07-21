@@ -1,102 +1,148 @@
 import tiza from '../src/index'
+import Tiza from '../src/tiza'
 
-describe('Tiza should be a function', () => {
-  it('right', function() {
-    expect(typeof tiza).toEqual('function')
-  })
-})
+describe('tiza', function() {
+  let ins = tiza()
 
-// describe('tiza.color', () => {
-//   it('should be a function', () => {
-//     expect(tiza.color).toEqual(jasmine.any('function'))
-//   })
-// })
-
-describe('tiza.log', function() {
-  // it('should be a function', function() {
-  //   expect(typeof tiza.log).toEqual('function')
-  // })
-})
-
-describe('Support', function() {
   beforeEach(function() {
-    spyOn(console, 'log').and.callThrough()
-    tiza().log('test').flush()
+    ins = tiza()
   })
-  it('called console.log', function() {
-    expect(console.log).toHaveBeenCalledTimes(1)
+
+  it('initial value', function() {
+    expect(ins.getCurrentStyles()).toEqual([])
+    expect(ins.getStyles()).toEqual([])
+    expect(ins.getTexts()).toEqual([])
   })
-  it('called console.log with correct argument', function() {
-    expect(console.log).toHaveBeenCalledWith('%ctest', '')
+
+  describe('style methods', function() {
+    it('always return an instance', function() {
+      expect(ins.style('color:red')).toEqual(jasmine.any(Tiza))
+      expect(ins.color('red')).toEqual(jasmine.any(Tiza))
+      expect(ins.bgColor('red')).toEqual(jasmine.any(Tiza))
+      expect(ins.bold()).toEqual(jasmine.any(Tiza))
+      expect(ins.italic()).toEqual(jasmine.any(Tiza))
+      expect(ins.size(20)).toEqual(jasmine.any(Tiza))
+      expect(ins.reset()).toEqual(jasmine.any(Tiza))
+    })
+
+    it('always return an new instance', function() {
+      expect(ins.style('color:red')).not.toBe(ins)
+      expect(ins.color('red')).not.toBe(ins)
+      expect(ins.bgColor('red')).not.toBe(ins)
+      expect(ins.bold()).not.toBe(ins)
+      expect(ins.italic()).not.toBe(ins)
+      expect(ins.size(20)).not.toBe(ins)
+      expect(ins.reset()).not.toBe(ins)
+    })
+
+    it('save style', function() {
+      expect(ins.style('color:red').getCurrentStyles()).toEqual(['color:red'])
+      expect(ins.color('red').getCurrentStyles()).toEqual(['color:red'])
+      expect(ins.bgColor('red').getCurrentStyles()).toEqual([
+        'background-color:red',
+      ])
+      expect(ins.bold().getCurrentStyles()).toEqual(['font-weight:bold'])
+      expect(ins.italic().getCurrentStyles()).toEqual(['font-style:italic'])
+      expect(ins.size('120%').getCurrentStyles()).toEqual(['font-size:120%'])
+      expect(ins.size(20).getCurrentStyles()).toEqual(['font-size:20px'])
+    })
+
+    it('method chaining', function() {
+      expect(
+        ins.style('color:red').bold().italic().getCurrentStyles()
+      ).toEqual(['color:red', 'font-weight:bold', 'font-style:italic'])
+    })
+
+    it('reset', function() {
+      expect(
+        ins.style('color:red').bgColor('black').reset().getCurrentStyles()
+      ).toEqual([])
+    })
+  })
+
+  describe('text methods', function() {
+    it('always return an instance', function() {
+      expect(ins.text('abc')).toEqual(jasmine.any(Tiza))
+      expect(ins.space()).toEqual(jasmine.any(Tiza))
+      expect(ins.newline()).toEqual(jasmine.any(Tiza))
+    })
+
+    it('always return a new instance', function() {
+      expect(ins.text('abc')).not.toBe(ins)
+      expect(ins.space()).not.toBe(ins)
+      expect(ins.newline()).not.toBe(ins)
+    })
+
+    it('save text', function() {
+      expect(ins.text('abc').getTexts()).toEqual(['abc'])
+      expect(ins.space().getTexts()).toEqual([' '])
+      expect(ins.space(10).getTexts()).toEqual([' '.repeat(10)])
+      expect(ins.newline().getTexts()).toEqual(['\n'])
+      expect(ins.newline(10).getTexts()).toEqual(['\n'.repeat(10)])
+    })
+
+    it('save current style', function() {
+      expect(ins.color('red').text('abc').getStyles()).toEqual(['color:red'])
+      expect(ins.color('red').space().getStyles()).toEqual(['color:red'])
+      expect(ins.color('red').newline().getStyles()).toEqual(['color:red'])
+    })
+
+    it('keep previous styles', function() {
+      const i = ins.color('red').text('a').bold().text('b')
+      expect(i.getTexts()).toEqual(['a', 'b'])
+      expect(i.getStyles()).toEqual(['color:red', 'color:red;font-weight:bold'])
+    })
+
+    describe('multiple arguments', function() {
+      it('save all arguments', function() {
+        expect(ins.text('a', 'b', 'c').getTexts()).toEqual(['a', 'b', 'c'])
+      })
+
+      it('save current style for all arguments', function() {
+        const i = ins.color('red').text('a', 'b', 'c')
+        expect(i.getTexts()).toEqual(['a', 'b', 'c'])
+        expect(i.getStyles()).toEqual(Array(3).fill('color:red'))
+      })
+
+      it('support nesting', function() {
+        const a = ins.color('red').text('a')
+        const b = ins.bold().text(a, 'b')
+        const c = ins.italic().text(b, 'c')
+        expect(b.getTexts()).toEqual(['a', 'b'])
+        expect(b.getStyles()).toEqual(['color:red', 'font-weight:bold'])
+        expect(c.getTexts()).toEqual(['a', 'b', 'c'])
+        expect(c.getStyles()).toEqual([
+          'color:red',
+          'font-weight:bold',
+          'font-style:italic',
+        ])
+      })
+    })
+  })
+
+  describe('log', function() {
+    beforeEach(function() {
+      spyOn(console, 'log').and.callThrough()
+    })
+
+    it('should call console.log', function() {
+      ins.color('red').text('abc').log()
+      expect(console.log).toHaveBeenCalledTimes(1)
+      expect(console.log).toHaveBeenCalledWith('%cabc', 'color:red')
+    })
+
+    it('handle nesting', function() {
+      const a = ins.color('red').text('red')
+      const b = ins.bold().text(a, 'bold')
+      const c = ins.italic().text(b, 'italic')
+      c.log()
+      expect(console.log).toHaveBeenCalledTimes(1)
+      expect(console.log).toHaveBeenCalledWith(
+        '%cred%cbold%citalic',
+        'color:red',
+        'font-weight:bold',
+        'font-style:italic'
+      )
+    })
   })
 })
-
-describe('support wrap', function() {
-  beforeEach(function() {
-    spyOn(console, 'log').and.callThrough()
-    const error = tiza().color('red').log
-    // const warning = tiza().color('yellow')
-    tiza().log(error('error'), 'log').flush()
-  })
-  it('should call console.log once', function() {
-    expect(console.log).toHaveBeenCalledTimes(1)
-  })
-  it('should with correct argument', function() {
-    expect(console.log).toHaveBeenCalledWith('%cerror%clog', 'color:red', '')
-  })
-})
-
-// tiza()
-//   .color('red')
-//   .size(16)
-//   .log('Tiza')
-//   .reset()
-//   .log(" is a JS library for browsers' console styling.")
-//   .newline(2)
-//   .log('Support')
-//   .space()
-//   .color('#CC3399')
-//   .log('All')
-//   .space()
-//   .color('#FF6666')
-//   .log('CSS')
-//   .space()
-//   .color('#336699')
-//   .log('colors')
-//   .reset()
-//   .log(',')
-//   .space()
-//   .color('#fff')
-//   .bgColor('blue')
-//   .log('background color')
-//   .reset()
-//   .log(', ')
-//   .bold()
-//   .log('bold')
-//   .reset()
-//   .log(', ')
-//   .italic()
-//   .log('italic')
-//   .reset()
-//   .log(', and ')
-//   .size(20)
-//   .log('size')
-//   .reset()
-//   .newline(2)
-//   .log('Support ')
-//   .color('#fff')
-//   .style(
-//     `
-//     background: linear-gradient(to right, red, orange, green, blue);
-//     padding: 4px;
-//     border-radius: 4px;
-//   `
-//   )
-//   .log('custom styles')
-//   .reset()
-//   .log(' too!')
-//   .reset()
-//   .newline(2)
-//   .log('Give it a try! https://github.com/pd4d10/tiza')
-//   // Always remember to call `flush` at last to put all to console
-//   .flush()
