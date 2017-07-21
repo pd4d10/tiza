@@ -1,88 +1,67 @@
-import { stringify, repeat } from './utils'
+import { repeat } from './utils'
 
-class Tiza {
-  _currentStyles = []
-  _texts = []
-  _styles = []
-
-  getTexts = () => {
-    return this._texts
+export class Tiza {
+  constructor(currentStyles = [], texts = [], styles = []) {
+    this._currentStyles = currentStyles
+    this._texts = texts
+    this._styles = styles
   }
 
-  getStyles = () => {
-    return this._styles
-  }
+  // Get method
+  getCurrentStyles = () => this._currentStyles
 
-  style = s => {
-    this._currentStyles.push(s)
-    return this
-  }
+  getTexts = () => this._texts
 
-  color = c => {
-    this.style({ color: c })
-    return this
-  }
+  getStyles = () => this._styles
 
-  bgColor = c => {
-    this.style({ 'background-color': c })
-    return this
-  }
+  // Push a style to current Styles
+  style = s => tiza([...this._currentStyles, s], this._texts, this._styles)
 
-  bold = () => {
-    this.style({ 'font-weight': 'bold' })
-    return this
-  }
+  // Alias for style method
+  color = c => this.style(`color:${c}`)
 
-  italic = () => {
-    this.style({ 'font-style': 'italic' })
-    return this
-  }
+  bgColor = c => this.style(`background-color:${c}`)
+
+  bold = () => this.style('font-weight:bold')
+
+  italic = () => this.style('font-style:italic')
 
   size = n => {
-    this.style({
-      'font-size': typeof n === 'number' ? `${n}px` : n,
-    })
-    return this
+    const s = typeof n === 'number' ? `${n}px` : n // Convert number to px
+    return this.style(`font-size:${s}`)
   }
 
-  reset = () => {
-    this._currentStyles = []
-    return this
-  }
+  // Clear all current styles
+  reset = () => tiza([], this._texts, this._styles)
 
-  log = (...args) => {
+  text = (...args) => {
+    const texts = [...this._texts]
+    const styles = [...this._styles]
     args.forEach(arg => {
       if (arg instanceof Tiza) {
-        this._texts.push(...arg.getTexts())
-        this._styles.push(...arg.getStyles())
+        texts.push(...arg.getTexts())
+        styles.push(...arg.getStyles())
       } else {
-        this._texts.push(`%c${arg}`)
-
-        const styles = []
-        this._currentStyles.forEach(style => {
-          styles.push(typeof style === 'string' ? style : stringify(style))
-        })
-        this._styles.push(styles.join(';'))
+        texts.push(arg)
+        styles.push(this._currentStyles.join(';'))
       }
     })
-    return this
+    return tiza(this._currentStyles, texts, styles)
   }
 
-  space = (count = 1) => {
-    this.log(repeat(' ', count))
-    return this
-  }
+  // Alias for text method
+  space = (count = 1) => this.text(repeat(' ', count))
 
-  newline = (count = 1) => {
-    this.log(repeat('\n', count))
-    return this
-  }
+  newline = (count = 1) => this.text(repeat('\n', count))
 
-  flush = () => {
-    console.log(this._texts.join(''), ...this._styles)
+  log = (...args) => {
+    const ins = this.text(...args)
+    console.log(`%c${ins.getTexts()}`.join(''), ...ins._styles)
+    return tiza(ins.getCurrentStyles(), [], [])
   }
 }
 
-export default function tiza() {
-  return new Tiza()
+// Factory function
+export default function tiza(...args) {
+  return new Tiza(...args)
 }
