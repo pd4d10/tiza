@@ -8,6 +8,7 @@
     "lint": "prettier --write --no-semi --single-quote --trailing-comma es5 src/* test/* rollup.config.js",
     "precommit": "npm run lint",
     "build": "rollup -c rollup.config.js",
+    "site": "cp dist/tiza.min.js site; gh-pages -d site; rm site/tiza.min.js",
     "prepublish": "npm run build"
   },
   "files": [
@@ -34,6 +35,7 @@
     "babel-plugin-istanbul": "^4.1.4",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-es2015": "^6.24.1",
+    "gh-pages": "^1.0.0",
     "husky": "^0.14.3",
     "jasmine-core": "^2.6.4",
     "karma": "^1.7.0",
