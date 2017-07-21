@@ -6,7 +6,7 @@ Console styling for browsers. [Demo here](https://pd4d10.github.io/tiza/)
 
 [![Build Status](https://travis-ci.org/pd4d10/tiza.svg)](https://travis-ci.org/pd4d10/tiza)
 [![npm](https://img.shields.io/npm/v/tiza.svg)](https://www.npmjs.com/package/tiza)
-
+[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 ## Installation
 

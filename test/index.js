@@ -76,9 +76,9 @@ describe('tiza', function() {
     it('save text', function() {
       expect(ins.text('abc').getTexts()).toEqual(['abc'])
       expect(ins.space().getTexts()).toEqual([' '])
-      expect(ins.space(10).getTexts()).toEqual([' '.repeat(10)])
+      expect(ins.space(10).getTexts()).toEqual(['          '])
       expect(ins.newline().getTexts()).toEqual(['\n'])
-      expect(ins.newline(10).getTexts()).toEqual(['\n'.repeat(10)])
+      expect(ins.newline(10).getTexts()).toEqual(['\n\n\n\n\n\n\n\n\n\n'])
     })
 
     it('save current style', function() {
@@ -105,7 +105,7 @@ describe('tiza', function() {
       it('save current style for all arguments', function() {
         const i = ins.color('red').text('a', 'b', 'c')
         expect(i.getTexts()).toEqual(['a', 'b', 'c'])
-        expect(i.getStyles()).toEqual(Array(3).fill('color:red'))
+        expect(i.getStyles()).toEqual(['color:red', 'color:red', 'color:red'])
       })
 
       it('support nesting', function() {
