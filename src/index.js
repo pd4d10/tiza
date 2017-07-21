@@ -1,88 +1,85 @@
 import { stringify, repeat } from './utils'
 
 class Tiza {
-  constructor() {
-    this.currentStyles = []
-    this.texts = []
-    this.styles = []
-    this.log = this.log.bind(this)
+  _currentStyles = []
+  _texts = []
+  _styles = []
+
+  getTexts = () => {
+    return this._texts
   }
 
-  getTexts() {
-    return this.texts
+  getStyles = () => {
+    return this._styles
   }
 
-  getStyles() {
-    return this.styles
-  }
-
-  style(s) {
-    this.currentStyles.push(s)
+  style = s => {
+    this._currentStyles.push(s)
     return this
   }
 
-  color(c) {
-    this.currentStyles.push({ color: c })
+  color = c => {
+    this.style({ color: c })
     return this
   }
 
-  bgColor(c) {
-    this.currentStyles.push({ 'background-color': c })
+  bgColor = c => {
+    this.style({ 'background-color': c })
     return this
   }
 
-  bold() {
-    this.currentStyles.push({ 'font-weight': 'bold' })
+  bold = () => {
+    this.style({ 'font-weight': 'bold' })
     return this
   }
 
-  italic() {
-    this.currentStyles.push({ 'font-style': 'italic' })
+  italic = () => {
+    this.style({ 'font-style': 'italic' })
     return this
   }
 
-  size(n) {
-    this.currentStyles.push({
+  size = n => {
+    this.style({
       'font-size': typeof n === 'number' ? `${n}px` : n,
     })
     return this
   }
 
-  reset() {
-    this.currentStyles = []
+  reset = () => {
+    this._currentStyles = []
     return this
   }
 
-  log(...args) {
+  log = (...args) => {
     args.forEach(arg => {
       if (arg instanceof Tiza) {
-        this.texts.push(...arg.getTexts())
-        this.styles.push(...arg.getStyles())
+        this._texts.push(...arg.getTexts())
+        this._styles.push(...arg.getStyles())
       } else {
-        this.texts.push(`%c${arg}`)
+        this._texts.push(`%c${arg}`)
 
         const styles = []
-        this.currentStyles.forEach(style => {
+        this._currentStyles.forEach(style => {
           styles.push(typeof style === 'string' ? style : stringify(style))
         })
-        this.styles.push(styles.join(';'))
+        this._styles.push(styles.join(';'))
       }
     })
     return this
   }
 
-  space(count = 1) {
+  space = (count = 1) => {
     this.log(repeat(' ', count))
     return this
   }
 
-  newline(count = 1) {
+  newline = (count = 1) => {
     this.log(repeat('\n', count))
     return this
   }
 
-  flush() {
-    console.log(this.texts.join(''), ...this.styles)
+  flush = () => {
+    console.log(this._texts.join(''), ...this._styles)
   }
 }
 
