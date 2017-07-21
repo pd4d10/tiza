@@ -106,13 +106,6 @@ var _initialiseProps = function _initialiseProps() {
   };
 };
 
-// Factory function
-function tiza() {
-  for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-    args[_key] = arguments[_key];
-  }
+var index = new Tiza();
 
-  return new (Function.prototype.bind.apply(Tiza, [null].concat(args)))();
-}
-
-module.exports = tiza;
+module.exports = index;

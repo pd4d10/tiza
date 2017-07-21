@@ -1,5 +1,5 @@
 /**
- * Tiza v1.0.0
+ * Tiza v2.0.0
  * Copyright (c) 2017 pd4d10
  * Released under the MIT License.
  * https://github.com/pd4d10/tiza
@@ -116,15 +116,8 @@ var _initialiseProps = function _initialiseProps() {
   };
 };
 
-// Factory function
-function tiza() {
-  for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-    args[_key] = arguments[_key];
-  }
+var index = new Tiza();
 
-  return new (Function.prototype.bind.apply(Tiza, [null].concat(args)))();
-}
-
-return tiza;
+return index;
 
 })));
