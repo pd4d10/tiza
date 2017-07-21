@@ -5,7 +5,7 @@
   "main": "dist/tiza.common.js",
   "scripts": {
     "test": "karma start",
-    "lint": "prettier --write --no-semi --single-quote --trailing-comma es5 src/* test/*",
+    "lint": "prettier --write --no-semi --single-quote --trailing-comma es5 src/* test/* rollup.config.js",
     "precommit": "npm run lint",
     "build": "rollup -c rollup.config.js",
     "prepublish": "npm run build"
