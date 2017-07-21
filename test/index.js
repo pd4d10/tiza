@@ -93,6 +93,10 @@ describe('tiza', function() {
       expect(i.getStyles()).toEqual(['color:red', 'color:red;font-weight:bold'])
     })
 
+    it('ignore no argument', function() {
+      expect(ins.text().getTexts()).toEqual([])
+    })
+
     describe('multiple arguments', function() {
       it('save all arguments', function() {
         expect(ins.text('a', 'b', 'c').getTexts()).toEqual(['a', 'b', 'c'])
@@ -127,6 +131,12 @@ describe('tiza', function() {
 
     it('should call console.log', function() {
       ins.color('red').text('abc').log()
+      expect(console.log).toHaveBeenCalledTimes(1)
+      expect(console.log).toHaveBeenCalledWith('%cabc', 'color:red')
+    })
+
+    it('equal to text when argument passed', function() {
+      ins.color('red').log('abc')
       expect(console.log).toHaveBeenCalledTimes(1)
       expect(console.log).toHaveBeenCalledWith('%cabc', 'color:red')
     })
