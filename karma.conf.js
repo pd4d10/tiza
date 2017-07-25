@@ -52,6 +52,16 @@ module.exports = function(config) {
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
     reporters: ['progress', 'coverage'],
 
+    // https://github.com/codecov/example-node#istanbul
+    // Configure code coverage reporter
+    coverageReporter: {
+        reporters: [
+            // generates ./coverage/lcov.info
+            {type:'lcovonly', subdir: '.'},
+            // generates ./coverage/coverage-final.json
+            {type:'json', subdir: '.'},
+        ]
+    },
 
     // web server port
     port: 9876,
