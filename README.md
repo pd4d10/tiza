@@ -1,13 +1,9 @@
-# Tiza
+# Tiza [![Build Status](https://travis-ci.org/pd4d10/tiza.svg?branch=master)](https://travis-ci.org/pd4d10/tiza) [![codecov](https://codecov.io/gh/pd4d10/tiza/branch/master/graph/badge.svg)](https://codecov.io/gh/pd4d10/tiza) [![npm](https://img.shields.io/npm/v/tiza.svg)](https://www.npmjs.com/package/tiza) [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+
 
 Console styling for browsers. [Demo here](https://pd4d10.github.io/tiza/)
 
 <img src="https://raw.githubusercontent.com/pd4d10/tiza/master/assets/demo.png" alt="demo" width="462">
-
-[![Build Status](https://travis-ci.org/pd4d10/tiza.svg?branch=master)](https://travis-ci.org/pd4d10/tiza)
-[![codecov](https://codecov.io/gh/pd4d10/tiza/branch/master/graph/badge.svg)](https://codecov.io/gh/pd4d10/tiza)
-[![npm](https://img.shields.io/npm/v/tiza.svg)](https://www.npmjs.com/package/tiza)
-[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 ## Installation
 
