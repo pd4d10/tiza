@@ -1,5 +1,5 @@
 /**
- * Tiza v2.0.0
+ * Tiza v2.0.1
  * Copyright (c) 2017 pd4d10
  * Released under the MIT License.
  * https://github.com/pd4d10/tiza
