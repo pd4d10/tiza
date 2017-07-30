@@ -43,6 +43,9 @@ export default [
         exclude: 'node_modules/**',
       }),
       uglify(),
+      license({
+        banner,
+      }),
     ],
     format: 'umd',
     moduleName: 'tiza',
