@@ -118,35 +118,38 @@ describe('tiza', function() {
     })
   })
 
-  describe('log', function() {
-    beforeEach(function() {
-      spyOn(console, 'log').and.callThrough()
-    })
+  const types = ['log', 'info', 'warn', 'error']
+  types.forEach(type => {
+    describe(type, function() {
+      beforeEach(function() {
+        spyOn(console, type).and.callThrough()
+      })
 
-    it('should call console.log', function() {
-      tiza.color('red').text('abc').log()
-      expect(console.log).toHaveBeenCalledTimes(1)
-      expect(console.log).toHaveBeenCalledWith('%cabc', 'color:red')
-    })
+      it(`should call console.${type}`, function() {
+        tiza.color('red').text('abc')[type]()
+        expect(console[type]).toHaveBeenCalledTimes(1)
+        expect(console[type]).toHaveBeenCalledWith('%cabc', 'color:red')
+      })
 
-    it('equal to text when argument passed', function() {
-      tiza.color('red').log('abc')
-      expect(console.log).toHaveBeenCalledTimes(1)
-      expect(console.log).toHaveBeenCalledWith('%cabc', 'color:red')
-    })
+      it('equal to text when argument passed', function() {
+        tiza.color('red')[type]('abc')
+        expect(console[type]).toHaveBeenCalledTimes(1)
+        expect(console[type]).toHaveBeenCalledWith('%cabc', 'color:red')
+      })
 
-    it('handle nesting', function() {
-      const a = tiza.color('red').text('red')
-      const b = tiza.bold().text(a, 'bold')
-      const c = tiza.italic().text(b, 'italic')
-      c.log()
-      expect(console.log).toHaveBeenCalledTimes(1)
-      expect(console.log).toHaveBeenCalledWith(
-        '%cred%cbold%citalic',
-        'color:red',
-        'font-weight:bold',
-        'font-style:italic'
-      )
+      it('handle nesting', function() {
+        const a = tiza.color('red').text('red')
+        const b = tiza.bold().text(a, 'bold')
+        const c = tiza.italic().text(b, 'italic')
+        c[type]()
+        expect(console[type]).toHaveBeenCalledTimes(1)
+        expect(console[type]).toHaveBeenCalledWith(
+          '%cred%cbold%citalic',
+          'color:red',
+          'font-weight:bold',
+          'font-style:italic'
+        )
+      })
     })
   })
 })

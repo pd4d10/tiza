@@ -56,9 +56,17 @@ export default class Tiza {
 
   newline = (count = 1) => this.text(repeat('\n', count))
 
-  log = (...args) => {
+  _output = type => (...args) => {
     const ins = this.text(...args)
-    console.log(ins.getTexts().map(t => `%c${t}`).join(''), ...ins._styles)
+    console[type](ins.getTexts().map(t => `%c${t}`).join(''), ...ins._styles)
     return new Tiza(ins.getCurrentStyles(), [], [])
   }
+
+  log = this._output('log')
+
+  info = this._output('info')
+
+  warn = this._output('warn')
+
+  error = this._output('error')
 }

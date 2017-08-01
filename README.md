@@ -141,9 +141,21 @@ Add newline. The default count is 1.
 
 ### tiza.log()
 
-Log all texts to console. Always remember to call `log` at last.
+Log all texts to console with `console.log`. Always remember to call `log` at last.
 
 Arguments are also supported, `log(...args)` equals to `text(...args).log()`
+
+### tiza.info()
+
+The same as `tiza.log`, but output with `console.info`
+
+### tiza.warn()
+
+The same as `tiza.log`, but output with `console.warn`
+
+### tiza.error()
+
+The same as `tiza.log`, but output with `console.error`
 
 ## License
 
