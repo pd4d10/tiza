@@ -2,6 +2,7 @@
 
 [<img src="https://raw.githubusercontent.com/pd4d10/tiza/master/assets/demo.png" alt="Tiza" width="468">](https://pd4d10.github.io/tiza/)
 
+[![gzip size](http://img.badgesize.io/pd4d10/tiza/master/dist/tiza.min.js?compression=gzip)](https://raw.githubusercontent.com/pd4d10/tiza/master/dist/tiza.min.js)
 [![Build Status](https://travis-ci.org/pd4d10/tiza.svg?branch=master)](https://travis-ci.org/pd4d10/tiza)
 [![codecov](https://codecov.io/gh/pd4d10/tiza/branch/master/graph/badge.svg)](https://codecov.io/gh/pd4d10/tiza)
 [![npm](https://img.shields.io/npm/v/tiza.svg)](https://www.npmjs.com/package/tiza)
