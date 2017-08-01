@@ -95,15 +95,22 @@ var _initialiseProps = function _initialiseProps() {
     return _this.text(repeat('\n', count));
   };
 
-  this.log = function () {
-    var _console;
+  this._output = function (type) {
+    return function () {
+      var _console;
 
-    var ins = _this.text.apply(_this, arguments);
-    (_console = console).log.apply(_console, [ins.getTexts().map(function (t) {
-      return '%c' + t;
-    }).join('')].concat(_toConsumableArray(ins._styles)));
-    return new Tiza(ins.getCurrentStyles(), [], []);
+      var ins = _this.text.apply(_this, arguments);
+      (_console = console)[type].apply(_console, [ins.getTexts().map(function (t) {
+        return '%c' + t;
+      }).join('')].concat(_toConsumableArray(ins._styles)));
+      return new Tiza(ins.getCurrentStyles(), [], []);
+    };
   };
+
+  this.log = this._output('log');
+  this.info = this._output('info');
+  this.warn = this._output('warn');
+  this.error = this._output('error');
 };
 
 var index = new Tiza();
