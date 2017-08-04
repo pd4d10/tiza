@@ -23,7 +23,7 @@ npm install --save tiza
 Add
 
 ```html
-<script src="https://rawgit.com/pd4d10/tiza/master/dist/tiza.min.js"></script>
+<script src="https://unpkg.com/tiza/dist/tiza.min.js"></script>
 ```
 
 to your HTML file, or download `tiza.js` or `tiza.min.js` on `dist` folder
