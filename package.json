@@ -6,11 +6,9 @@
   "scripts": {
     "test": "NODE_ENV=test karma start --single-run --browsers ChromeHeadless",
     "watch": "NODE_ENV=test karma start",
-    "lint": "prettier --write --no-semi --single-quote --trailing-comma es5 src/* test/* rollup.config.js",
-    "precommit": "npm run lint",
     "build": "rollup -c rollup.config.js",
     "site": "cp dist/tiza.min.js site; gh-pages -d site; rm site/tiza.min.js",
-    "prepublish": "npm run build"
+    "prepublishOnly": "npm run build"
   },
   "files": [
     "dist"

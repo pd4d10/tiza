@@ -58,7 +58,13 @@ export default class Tiza {
 
   _output = type => (...args) => {
     const ins = this.text(...args)
-    console[type](ins.getTexts().map(t => `%c${t}`).join(''), ...ins._styles)
+    console[type](
+      ins
+        .getTexts()
+        .map(t => `%c${t}`)
+        .join(''),
+      ...ins._styles,
+    )
     return new Tiza(ins.getCurrentStyles(), [], [])
   }
 
