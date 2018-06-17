@@ -93,65 +93,22 @@ Find 'Styling console output with CSS'
 
 ## API
 
-### tiza.color(color: string)
-
-Set font color. All CSS colors are supported.
-
-### tiza.bgColor(color: string)
-
-Set background color. All CSS colors are supported too.
-
-### tiza.bold()
-
-Set bold font.
-
-### tiza.italic()
-
-Set italic font.
-
-### tiza.size(size: number | string)
-
-Set font size. If argument is a number, will convert it to `px`.
-
-### tiza.style(style: string)
-
-Set custom style, using inline style format.
-
-### tiza.reset()
-
-Reset styles set before.
-
-### tiza.text(...args: string[])
-
-Add text(s), support multiple arguments. Every text added here will be styled with styles set previously.
-
-Notice that every argument will be converted to string, and there will be no space between them(This behaviour is different with `console.log`). If you want to add a space, use `text('a').space().text('b')`
-
-### tiza.space(count: number)
-
-Add space. The default count is 1.
-
-### tiza.newline(count: number)
-
-Add newline. The default count is 1.
-
-### tiza.log()
-
-Log all texts to console with `console.log`. Always remember to call `log` at last.
-
-Arguments are also supported, `log(...args)` equals to `text(...args).log()`
-
-### tiza.info()
-
-The same as `tiza.log`, but output with `console.info`
-
-### tiza.warn()
-
-The same as `tiza.log`, but output with `console.warn`
-
-### tiza.error()
-
-The same as `tiza.log`, but output with `console.error`
+| Method                       | Description                                                                                                                                                                                                                                                                                                              |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| tiza.color('red')            | Set font color, support all CSS colors                                                                                                                                                                                                                                                                                   |
+| tiza.bgColor('red')          | Set background color, support all CSS colors                                                                                                                                                                                                                                                                             |
+| tiza.bold()                  | Set font weight to bold                                                                                                                                                                                                                                                                                                  |
+| tiza.italic()                | Set font style to italic                                                                                                                                                                                                                                                                                                 |
+| tiza.size(14 \| '14px')      | Set font size, number will be converted to `px`                                                                                                                                                                                                                                                                          |
+| tiza.style('color:red')      | Set custom style, using inline style format                                                                                                                                                                                                                                                                              |
+| tiza.reset()                 | Reset styles set before                                                                                                                                                                                                                                                                                                  |
+| tiza.text(...args: string[]) | Add text(s), support multiple arguments. Every text added here will be styled with styles set previously. Notice that every argument will be converted to string, and there will be no space between them(This behaviour is different with `console.log`). If you want to add a space, use `text('a').space().text('b')` |
+| tiza.space(count?: number)   | Add space. The default count is 1.                                                                                                                                                                                                                                                                                       |
+| tiza.newline(count?: number) | Add newline. The default count is 1                                                                                                                                                                                                                                                                                      |
+| tiza.log()                   | Log all texts to console with `console.log`. Always remember to call `log` at last. Arguments are also supported, `log(...args)` equals to `text(...args).log()`                                                                                                                                                         |
+| tiza.info()                  | The same as `tiza.log`, but output with `console.info`                                                                                                                                                                                                                                                                   |
+| tiza.warn()                  | The same as `tiza.log`, but output with `console.warn`                                                                                                                                                                                                                                                                   |
+| tiza.error()                 | The same as `tiza.log`, but output with `console.error`                                                                                                                                                                                                                                                                  |
 
 ## License
 
