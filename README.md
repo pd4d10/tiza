@@ -1,14 +1,15 @@
 # Tiza
 
-[<img src="https://raw.githubusercontent.com/pd4d10/tiza/master/assets/demo.png" alt="Tiza" width="468">](https://pd4d10.github.io/tiza/)
+[<img src="https://raw.githubusercontent.com/pd4d10/tiza/master/assets/demo.png" alt="demo" width="468">](https://pd4d10.github.io/tiza/)
 
 [![gzip size](http://img.badgesize.io/pd4d10/tiza/master/dist/tiza.min.js?compression=gzip)](https://raw.githubusercontent.com/pd4d10/tiza/master/dist/tiza.min.js)
-[![Build Status](https://travis-ci.org/pd4d10/tiza.svg?branch=master)](https://travis-ci.org/pd4d10/tiza)
-[![codecov](https://codecov.io/gh/pd4d10/tiza/branch/master/graph/badge.svg)](https://codecov.io/gh/pd4d10/tiza)
+[![Travis](https://img.shields.io/travis/pd4d10/tiza.svg)](https://travis-ci.org/pd4d10/tiza)
+[![Codecov](https://img.shields.io/codecov/c/github/pd4d10/tiza.svg)](https://codecov.io/gh/pd4d10/tiza)
 [![npm](https://img.shields.io/npm/v/tiza.svg)](https://www.npmjs.com/package/tiza)
-[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
-[Demo here](https://pd4d10.github.io/tiza/)
+Tiza is a JavaScript library for browsers' console styling.
+
+View demo here: https://pd4d10.github.io/tiza/
 
 ## Installation
 
@@ -33,17 +34,15 @@ to your HTML file, or download `tiza.js` or `tiza.min.js` on `dist` folder
 ```js
 import tiza from 'tiza'
 
-tiza.color('#fff')    // Set color, all CSS colors are supported
-  .bgColor('purple')  // Set background color
-  .bold()             // Set bold font
-  .italic()           // Set italic font
-  .size(20)           // Set font size
+tiza
+  .color('#fff') // Set color, all CSS colors are supported
+  .bgColor('purple') // Set background color
+  .bold() // Set bold font
+  .italic() // Set italic font
+  .size(20) // Set font size
 
   // Support custom styles too!
-  .style(`
-    padding: 4px;
-    border-radius: 2px;
-  `)
+  .style(`padding: 4px; border-radius: 2px;`)
 
   // After styles done right, it's time to add text now
   .text('Hey, I have styling now!')
@@ -74,10 +73,7 @@ tiza.log(
   error('I am some error'),
   'I am some normal message',
   error('I am some error again!'),
-  info(
-    'I am some info',
-    error('I am still some error!')
-  ),
+  info('I am some info', error('I am still some error!')),
 )
 ```
 
