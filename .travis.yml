@@ -1,7 +1,12 @@
+# https://github.com/travis-ci/travis-ci/issues/9024#issuecomment-356282802
+sudo: required
 addons:
   chrome: stable
 language: node_js
 node_js: node
+before_script:
+  - "sudo chown root /opt/google/chrome/chrome-sandbox"
+  - "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"
 after_success:
   - npm install -g codecov
   - codecov
