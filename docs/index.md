@@ -1,0 +1,48 @@
+---
+layout: default
+---
+
+Open the console to see how it works.
+
+```js
+tiza
+  .color('#CC3399').bold().text('Tiza')
+  .reset().text(' is a JavaScript library for browsers\' console styling.')
+
+  .newline(2)
+
+  .text('Support')
+  .space().color('#FF6666').text('All')
+  .space().color('#6666CC').text('CSS')
+  .space().color('#009933').text('colors')
+  .reset().text(',')
+
+  .space().color('#fff').bgColor('#9933CC').text('background')
+
+  .reset().text(', ')
+  .bold().text('bold')
+
+  .reset().text(', ')
+  .italic().text('italic')
+
+  .reset().text(', and ')
+  .size(18).text('size')
+
+  .reset().newline(2)
+
+  .text('Support ')
+  .color('#fff').style(`
+  background: linear-gradient(to right, red, orange, green, blue);
+  padding: 4px;
+  border-radius: 4px;
+`)
+  .text('custom styles')
+  .reset().text(' too!')
+
+  .reset().newline(2).text('Give it a try! ⚡️ https://github.com/pd4d10/tiza')
+
+  // Always remember to call `log` at last to put all texts to console
+  .log()
+```
+
+{% include script.html %}
