@@ -7,7 +7,6 @@
     "test": "NODE_ENV=test karma start --single-run --browsers ChromeHeadless",
     "watch": "NODE_ENV=test karma start",
     "build": "rollup -c rollup.config.js",
-    "site": "cp dist/tiza.min.js site; gh-pages -d site; rm site/tiza.min.js",
     "prepublishOnly": "npm run build"
   },
   "files": [
