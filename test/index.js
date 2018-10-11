@@ -43,13 +43,21 @@ describe('tiza', function() {
 
     it('method chaining', function() {
       expect(
-        tiza.style('color:red').bold().italic().getCurrentStyles()
+        tiza
+          .style('color:red')
+          .bold()
+          .italic()
+          .getCurrentStyles(),
       ).toEqual(['color:red', 'font-weight:bold', 'font-style:italic'])
     })
 
     it('reset', function() {
       expect(
-        tiza.style('color:red').bgColor('black').reset().getCurrentStyles()
+        tiza
+          .style('color:red')
+          .bgColor('black')
+          .reset()
+          .getCurrentStyles(),
       ).toEqual([])
     })
   })
@@ -76,13 +84,32 @@ describe('tiza', function() {
     })
 
     it('save current style', function() {
-      expect(tiza.color('red').text('abc').getStyles()).toEqual(['color:red'])
-      expect(tiza.color('red').space().getStyles()).toEqual(['color:red'])
-      expect(tiza.color('red').newline().getStyles()).toEqual(['color:red'])
+      expect(
+        tiza
+          .color('red')
+          .text('abc')
+          .getStyles(),
+      ).toEqual(['color:red'])
+      expect(
+        tiza
+          .color('red')
+          .space()
+          .getStyles(),
+      ).toEqual(['color:red'])
+      expect(
+        tiza
+          .color('red')
+          .newline()
+          .getStyles(),
+      ).toEqual(['color:red'])
     })
 
     it('keep previous styles', function() {
-      const i = tiza.color('red').text('a').bold().text('b')
+      const i = tiza
+        .color('red')
+        .text('a')
+        .bold()
+        .text('b')
       expect(i.getTexts()).toEqual(['a', 'b'])
       expect(i.getStyles()).toEqual(['color:red', 'color:red;font-weight:bold'])
     })
@@ -126,7 +153,10 @@ describe('tiza', function() {
       })
 
       it(`should call console.${type}`, function() {
-        tiza.color('red').text('abc')[type]()
+        tiza
+          .color('red')
+          .text('abc')
+          [type]()
         expect(console[type]).toHaveBeenCalledTimes(1)
         expect(console[type]).toHaveBeenCalledWith('%cabc', 'color:red')
       })
@@ -147,7 +177,7 @@ describe('tiza', function() {
           '%cred%cbold%citalic',
           'color:red',
           'font-weight:bold',
-          'font-style:italic'
+          'font-style:italic',
         )
       })
     })
