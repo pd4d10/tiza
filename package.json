@@ -2,11 +2,12 @@
   "name": "tiza",
   "version": "2.1.0",
   "description": "Console styling for browsers",
-  "main": "dist/tiza.common.js",
+  "main": "dist/tiza.js",
+  "module": "dist/tiza.esm.js",
   "scripts": {
     "test": "NODE_ENV=test karma start --single-run --browsers ChromeHeadless",
     "watch": "NODE_ENV=test karma start",
-    "build": "rollup -c rollup.config.js",
+    "build": "rollup --config rollup.config.js",
     "prepublishOnly": "npm run build"
   },
   "files": [
@@ -29,22 +30,20 @@
   },
   "homepage": "https://github.com/pd4d10/tiza#readme",
   "devDependencies": {
-    "babel-core": "^6.25.0",
-    "babel-plugin-istanbul": "^4.1.4",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-preset-env": "^1.7.0",
-    "gh-pages": "^1.0.0",
-    "jasmine-core": "^2.6.4",
-    "karma": "^1.7.0",
+    "jasmine-core": "^3.2.1",
+    "karma": "^3.0.0",
     "karma-chrome-launcher": "^2.2.0",
-    "karma-coverage": "^1.1.1",
-    "karma-firefox-launcher": "^1.0.1",
-    "karma-jasmine": "^1.1.0",
-    "karma-rollup-preprocessor": "^4.0.1",
+    "karma-coverage": "^1.1.2",
+    "karma-firefox-launcher": "^1.1.0",
+    "karma-jasmine": "^1.1.2",
+    "karma-rollup-preprocessor": "^6.0.1",
     "karma-safari-launcher": "^1.0.0",
-    "rollup": "^0.45.2",
-    "rollup-plugin-babel": "^2.7.1",
-    "rollup-plugin-license": "^0.4.0",
-    "rollup-plugin-uglify": "^2.0.1"
+    "karma-typescript": "^3.0.13",
+    "rollup": "^0.66.6",
+    "rollup-plugin-license": "^0.7.0",
+    "rollup-plugin-typescript": "^1.0.0",
+    "rollup-plugin-uglify": "^6.0.0",
+    "tslib": "^1.9.3",
+    "typescript": "^3.1.3"
   }
 }

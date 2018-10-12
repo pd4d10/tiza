@@ -1,9 +1,17 @@
-function repeat(text, count) {
+function repeat(text: string, count: number) {
   return Array(count + 1).join(text)
 }
 
 export default class Tiza {
-  constructor(currentStyles = [], texts = [], styles = []) {
+  _currentStyles: string[]
+  _texts: string[]
+  _styles: string[]
+
+  constructor(
+    currentStyles: string[] = [],
+    texts: string[] = [],
+    styles: string[] = [],
+  ) {
     this._currentStyles = currentStyles
     this._texts = texts
     this._styles = styles
@@ -17,18 +25,19 @@ export default class Tiza {
   getStyles = () => this._styles
 
   // Push a style to current Styles
-  style = s => new Tiza([...this._currentStyles, s], this._texts, this._styles)
+  style = (s: string) =>
+    new Tiza([...this._currentStyles, s], this._texts, this._styles)
 
   // Alias for style method
-  color = c => this.style(`color:${c}`)
+  color = (c: string) => this.style(`color:${c}`)
 
-  bgColor = c => this.style(`background-color:${c}`)
+  bgColor = (c: string) => this.style(`background-color:${c}`)
 
   bold = () => this.style('font-weight:bold')
 
   italic = () => this.style('font-style:italic')
 
-  size = n => {
+  size = (n: number | string) => {
     const s = typeof n === 'number' ? `${n}px` : n // Convert number to px
     return this.style(`font-size:${s}`)
   }
@@ -36,7 +45,7 @@ export default class Tiza {
   // Clear all current styles
   reset = () => new Tiza([], this._texts, this._styles)
 
-  text = (...args) => {
+  text = (...args: (string | Tiza)[]) => {
     const texts = [...this._texts]
     const styles = [...this._styles]
     args.forEach(arg => {
@@ -56,7 +65,9 @@ export default class Tiza {
 
   newline = (count = 1) => this.text(repeat('\n', count))
 
-  _output = type => (...args) => {
+  _output = (type: 'log' | 'info' | 'warn' | 'error') => (
+    ...args: string[]
+  ) => {
     const ins = this.text(...args)
     console[type](
       ins

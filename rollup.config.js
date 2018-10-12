@@ -1,8 +1,8 @@
-import babel from 'rollup-plugin-babel'
+import typescript from 'rollup-plugin-typescript'
 import license from 'rollup-plugin-license'
-import uglify from 'rollup-plugin-uglify'
+import { uglify } from 'rollup-plugin-uglify'
 
-const babelPlugin = babel({ exclude: 'node_modules/**' })
+const tsPlugin = typescript()
 const licensePlugin = license({
   banner: `/**
  * Tiza v${require('./package.json').version}
@@ -15,23 +15,39 @@ const licensePlugin = license({
 // https://github.com/rollup/rollup/issues/703#issuecomment-306246339
 export default [
   {
-    entry: 'src/index.js',
-    plugins: [babelPlugin],
-    format: 'cjs',
-    dest: 'dist/tiza.common.js',
+    input: 'src/index.ts',
+    output: {
+      name: 'tiza',
+      file: 'dist/tiza.js',
+      format: 'umd',
+    },
+    plugins: [tsPlugin, licensePlugin],
   },
   {
-    entry: 'src/index.js',
-    plugins: [babelPlugin, licensePlugin],
-    format: 'umd',
-    moduleName: 'tiza',
-    dest: 'dist/tiza.js',
+    input: 'src/index.ts',
+    output: {
+      name: 'tiza',
+      file: 'dist/tiza.esm.js',
+      format: 'es',
+    },
+    plugins: [tsPlugin, licensePlugin],
   },
   {
-    entry: 'src/index.js',
-    plugins: [babelPlugin, uglify(), licensePlugin],
-    format: 'umd',
-    moduleName: 'tiza',
-    dest: 'dist/tiza.min.js',
+    input: 'src/index.ts',
+    output: {
+      name: 'tiza',
+      file: 'dist/tiza.common.js',
+      format: 'cjs',
+    },
+    plugins: [tsPlugin, licensePlugin],
+  },
+  {
+    input: 'src/index.ts',
+    output: {
+      name: 'tiza',
+      file: 'dist/tiza.min.js',
+      format: 'umd',
+    },
+    plugins: [tsPlugin, uglify(), licensePlugin],
   },
 ]
