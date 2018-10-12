@@ -1,4 +1,4 @@
-import typescript from 'rollup-plugin-typescript'
+import typescript from 'rollup-plugin-typescript2'
 import license from 'rollup-plugin-license'
 import { uglify } from 'rollup-plugin-uglify'
 
