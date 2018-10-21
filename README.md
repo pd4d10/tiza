@@ -89,9 +89,7 @@ For more detail see [API](#api)
 
 ## How does it work?
 
-https://developers.google.com/web/tools/chrome-devtools/console/console-write
-
-Find _Styling console output with CSS_
+[Styling console output with CSS](https://developers.google.com/web/tools/chrome-devtools/console/console-write#styling_console_output_with_css)
 
 ## Who's using Tiza
 
