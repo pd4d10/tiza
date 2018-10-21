@@ -2,10 +2,10 @@
 
 [<img src="https://raw.githubusercontent.com/pd4d10/tiza/master/assets/demo.png" alt="demo" width="468">](https://tiza.js.org)
 
-[![gzip size](http://img.badgesize.io/pd4d10/tiza/master/dist/tiza.min.js?compression=gzip)](https://raw.githubusercontent.com/pd4d10/tiza/master/dist/tiza.min.js)
-[![Travis](https://img.shields.io/travis/pd4d10/tiza.svg)](https://travis-ci.org/pd4d10/tiza)
-[![Codecov](https://img.shields.io/codecov/c/github/pd4d10/tiza.svg)](https://codecov.io/gh/pd4d10/tiza)
+[![build](https://img.shields.io/travis/pd4d10/tiza.svg)](https://travis-ci.org/pd4d10/tiza)
+[![coverage](https://img.shields.io/codecov/c/github/pd4d10/tiza.svg)](https://codecov.io/gh/pd4d10/tiza)
 [![npm](https://img.shields.io/npm/v/tiza.svg)](https://www.npmjs.com/package/tiza)
+[![gzip size](http://img.badgesize.io/https://unpkg.com/tiza/dist/tiza.min.js?compression=gzip)](https://unpkg.com/tiza/dist/tiza.min.js)
 
 Tiza is a JavaScript library for browsers' console styling.
 
@@ -19,15 +19,21 @@ View demo here: https://tiza.js.org
 npm install --save tiza
 ```
 
+Then import it:
+
+```js
+import tiza from 'tiza'
+// or via require if you are using commonjs
+const tiza = require('tiza').default
+```
+
 ### UMD bundle
 
-Add
+Add script tag to your HTML file:
 
 ```html
 <script src="https://unpkg.com/tiza/dist/tiza.min.js"></script>
 ```
-
-to your HTML file, or download `tiza.js` or `tiza.min.js` on `dist` folder
 
 ## Usage
 
