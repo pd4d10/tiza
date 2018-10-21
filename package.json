@@ -1,6 +1,6 @@
 {
   "name": "tiza",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Console styling for browsers",
   "main": "dist/tiza.common.js",
   "module": "dist/tiza.esm.js",
