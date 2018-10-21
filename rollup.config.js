@@ -12,7 +12,7 @@ const licensePlugin = license({
  */`,
 })
 
-const input = 'src/tiza.ts'
+const input = 'src/index.ts'
 
 const outputConfig = {
   name: 'tiza',
@@ -21,15 +21,6 @@ const outputConfig = {
 
 // https://github.com/rollup/rollup/issues/703#issuecomment-306246339
 export default [
-  {
-    input,
-    output: {
-      ...outputConfig,
-      file: 'dist/tiza.js',
-      format: 'umd',
-    },
-    plugins: [tsPlugin, licensePlugin],
-  },
   {
     input,
     output: {
@@ -45,6 +36,15 @@ export default [
       ...outputConfig,
       file: 'dist/tiza.common.js',
       format: 'cjs',
+    },
+    plugins: [tsPlugin, licensePlugin],
+  },
+  {
+    input,
+    output: {
+      ...outputConfig,
+      file: 'dist/tiza.js',
+      format: 'umd',
     },
     plugins: [tsPlugin, licensePlugin],
   },

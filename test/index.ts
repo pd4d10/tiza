@@ -1,4 +1,5 @@
-import tiza, { Tiza } from '../src/tiza'
+import tiza from '../src'
+import { Tiza } from '../src/tiza'
 
 describe('tiza', function() {
   it('initial value', function() {

@@ -86,5 +86,3 @@ export class Tiza {
 
   error = this._output('error')
 }
-
-export default new Tiza()
