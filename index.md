@@ -32,10 +32,10 @@ tiza
 
   .text('Support ')
   .color('#fff').style(`
-  background: linear-gradient(to right, red, orange, green, blue);
-  padding: 4px;
-  border-radius: 4px;
-`)
+    background: linear-gradient(to right, red, orange, green, blue);
+    padding: 4px;
+    border-radius: 4px;
+  `)
   .text('custom styles')
   .reset().text(' too!')
 
