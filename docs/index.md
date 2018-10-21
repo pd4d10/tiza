@@ -2,8 +2,12 @@
 layout: default
 ---
 
-Open the console to see how it works.
+**Open the console** to see how it works.
 
+- macOS: `Option + Meta + I`
+- Windows and Linux: `Ctrl + Shift + I`
+
+<!-- prettier-ignore -->
 ```js
 tiza
   .color('#CC3399').bold().text('Tiza')
