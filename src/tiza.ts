@@ -2,10 +2,10 @@ function repeat(text: string, count: number) {
   return Array(count + 1).join(text)
 }
 
-export default class Tiza {
-  _currentStyles: string[]
-  _texts: string[]
-  _styles: string[]
+export class Tiza {
+  private _currentStyles: string[]
+  private _texts: string[]
+  private _styles: string[]
 
   constructor(
     currentStyles: string[] = [],
@@ -60,13 +60,12 @@ export default class Tiza {
     return new Tiza(this._currentStyles, texts, styles)
   }
 
-  // Alias for text method
   space = (count = 1) => this.text(repeat(' ', count))
 
   newline = (count = 1) => this.text(repeat('\n', count))
 
-  _output = (type: 'log' | 'info' | 'warn' | 'error') => (
-    ...args: string[]
+  private _output = (type: 'log' | 'info' | 'warn' | 'error') => (
+    ...args: (string | Tiza)[]
   ) => {
     const ins = this.text(...args)
     console[type](
@@ -76,7 +75,7 @@ export default class Tiza {
         .join(''),
       ...ins._styles,
     )
-    return new Tiza(ins.getCurrentStyles(), [], [])
+    return new Tiza(ins.getCurrentStyles())
   }
 
   log = this._output('log')
@@ -87,3 +86,5 @@ export default class Tiza {
 
   error = this._output('error')
 }
+
+export default new Tiza()

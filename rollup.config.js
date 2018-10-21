@@ -12,39 +12,46 @@ const licensePlugin = license({
  */`,
 })
 
+const input = 'src/tiza.ts'
+
+const outputConfig = {
+  name: 'tiza',
+  sourcemap: true,
+}
+
 // https://github.com/rollup/rollup/issues/703#issuecomment-306246339
 export default [
   {
-    input: 'src/index.ts',
+    input,
     output: {
-      name: 'tiza',
+      ...outputConfig,
       file: 'dist/tiza.js',
       format: 'umd',
     },
     plugins: [tsPlugin, licensePlugin],
   },
   {
-    input: 'src/index.ts',
+    input,
     output: {
-      name: 'tiza',
+      ...outputConfig,
       file: 'dist/tiza.esm.js',
       format: 'es',
     },
     plugins: [tsPlugin, licensePlugin],
   },
   {
-    input: 'src/index.ts',
+    input,
     output: {
-      name: 'tiza',
+      ...outputConfig,
       file: 'dist/tiza.common.js',
       format: 'cjs',
     },
     plugins: [tsPlugin, licensePlugin],
   },
   {
-    input: 'src/index.ts',
+    input,
     output: {
-      name: 'tiza',
+      ...outputConfig,
       file: 'dist/tiza.min.js',
       format: 'umd',
     },

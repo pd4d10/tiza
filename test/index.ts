@@ -1,5 +1,4 @@
-import tiza from '../src/index'
-import Tiza from '../src/tiza'
+import tiza, { Tiza } from '../src/tiza'
 
 describe('tiza', function() {
   it('initial value', function() {
@@ -145,7 +144,12 @@ describe('tiza', function() {
     })
   })
 
-  const types = ['log', 'info', 'warn', 'error']
+  const types: ('log' | 'info' | 'warn' | 'error')[] = [
+    'log',
+    'info',
+    'warn',
+    'error',
+  ]
   types.forEach(type => {
     describe(type, function() {
       beforeEach(function() {
