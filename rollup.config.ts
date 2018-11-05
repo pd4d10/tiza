@@ -25,29 +25,23 @@ const outputConfig = {
 export default [
   {
     input,
-    output: {
-      ...outputConfig,
-      file: pkg.module,
-      format: 'es',
-    },
-    plugins: [tsPlugin, licensePlugin],
-  },
-  {
-    input,
-    output: {
-      ...outputConfig,
-      file: pkg.main,
-      format: 'cjs',
-    },
-    plugins: [tsPlugin, licensePlugin],
-  },
-  {
-    input,
-    output: {
-      ...outputConfig,
-      file: 'dist/tiza.js',
-      format: 'umd',
-    },
+    output: [
+      {
+        ...outputConfig,
+        file: pkg.module,
+        format: 'es',
+      },
+      {
+        ...outputConfig,
+        file: pkg.main,
+        format: 'cjs',
+      },
+      {
+        ...outputConfig,
+        file: 'dist/tiza.js',
+        format: 'umd',
+      },
+    ],
     plugins: [tsPlugin, licensePlugin],
   },
   {
