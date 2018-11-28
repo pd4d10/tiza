@@ -1,3 +1,5 @@
+// @ts-check
+import rollup from 'rollup'
 import typescript from 'rollup-plugin-typescript2'
 import license from 'rollup-plugin-license'
 import { uglify } from 'rollup-plugin-uglify'
@@ -21,8 +23,10 @@ const outputConfig = {
   sourcemap: true,
 }
 
+// Multiple configs
 // https://github.com/rollup/rollup/issues/703#issuecomment-306246339
-export default [
+/** @type {rollup.RollupFileOptions[]} */
+const configs = [
   {
     input,
     output: [
@@ -54,3 +58,5 @@ export default [
     plugins: [tsPlugin, uglify(), licensePlugin],
   },
 ]
+
+export default configs
