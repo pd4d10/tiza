@@ -2,22 +2,20 @@
   "name": "tiza",
   "version": "2.2.1",
   "description": "Console styling for browsers",
-  "main": "dist/tiza.common.js",
+  "main": "dist/index.js",
   "module": "dist/tiza.esm.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "test": "NODE_ENV=test karma start --single-run --browsers ChromeHeadless",
-    "watch": "NODE_ENV=test karma start",
-    "build": "rm -rf dist && rollup --config rollup.config.js",
-    "prepublishOnly": "npm run build"
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build"
   },
   "files": [
     "dist"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/pd4d10/tiza.git"
-  },
+  "repository": "pd4d10/tiza",
   "keywords": [
     "browser",
     "console",
@@ -26,25 +24,11 @@
   ],
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/pd4d10/tiza/issues"
-  },
-  "homepage": "https://github.com/pd4d10/tiza#readme",
+  "homepage": "https://github.com/pd4d10/tiza",
   "devDependencies": {
-    "@types/jasmine": "^2.8.9",
-    "jasmine-core": "^3.2.1",
-    "karma": "^3.0.0",
-    "karma-chrome-launcher": "^2.2.0",
-    "karma-coverage": "^1.1.2",
-    "karma-firefox-launcher": "^1.1.0",
-    "karma-jasmine": "^1.1.2",
-    "karma-rollup-preprocessor": "^6.0.1",
-    "karma-safari-launcher": "^1.0.0",
-    "karma-typescript": "^3.0.13",
-    "rollup": "^0.66.6",
-    "rollup-plugin-license": "^0.7.0",
-    "rollup-plugin-typescript2": "^0.17.1",
-    "rollup-plugin-uglify": "^6.0.0",
-    "typescript": "^3.1.3"
+    "@types/jest": "^25.1.3",
+    "tsdx": "^0.12.3",
+    "tslib": "^1.11.0",
+    "typescript": "^3.8.2"
   }
 }
