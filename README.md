@@ -2,9 +2,10 @@
 
 [<img src="https://raw.githubusercontent.com/pd4d10/tiza/master/assets/demo.png" alt="demo" width="468">](https://tiza.js.org)
 
-[![build](https://img.shields.io/travis/pd4d10/tiza.svg)](https://travis-ci.org/pd4d10/tiza)
+![test](https://github.com/pd4d10/tiza/workflows/test/badge.svg)
+[![demo](https://github.com/pd4d10/tiza/workflows/deploy/badge.svg)](https://tiza.js.org)
 [![npm](https://img.shields.io/npm/v/tiza.svg)](https://www.npmjs.com/package/tiza)
-[![gzip size](http://img.badgesize.io/https://unpkg.com/tiza/dist/tiza.min.js?compression=gzip)](https://unpkg.com/tiza/dist/tiza.min.js)
+[![gzip size](https://img.badgesize.io/https://unpkg.com/tiza/dist/tiza.min.js?compression=gzip)](https://unpkg.com/tiza/dist/tiza.min.js)
 
 Tiza is a JavaScript library for browsers' console styling.
 
