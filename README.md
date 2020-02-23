@@ -3,7 +3,6 @@
 [<img src="https://raw.githubusercontent.com/pd4d10/tiza/master/assets/demo.png" alt="demo" width="468">](https://tiza.js.org)
 
 [![build](https://img.shields.io/travis/pd4d10/tiza.svg)](https://travis-ci.org/pd4d10/tiza)
-[![coverage](https://img.shields.io/codecov/c/github/pd4d10/tiza.svg)](https://codecov.io/gh/pd4d10/tiza)
 [![npm](https://img.shields.io/npm/v/tiza.svg)](https://www.npmjs.com/package/tiza)
 [![gzip size](http://img.badgesize.io/https://unpkg.com/tiza/dist/tiza.min.js?compression=gzip)](https://unpkg.com/tiza/dist/tiza.min.js)
 
