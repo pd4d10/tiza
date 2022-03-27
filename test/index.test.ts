@@ -43,13 +43,13 @@ describe('tiza', function () {
 
     it('method chaining', function () {
       expect(
-        tiza.style('color:red').bold().italic().getCurrentStyles(),
+        tiza.style('color:red').bold().italic().getCurrentStyles()
       ).toEqual(['color:red', 'font-weight:bold', 'font-style:italic'])
     })
 
     it('reset', function () {
       expect(
-        tiza.style('color:red').bgColor('black').reset().getCurrentStyles(),
+        tiza.style('color:red').bgColor('black').reset().getCurrentStyles()
       ).toEqual([])
     })
   })
@@ -152,7 +152,7 @@ describe('tiza', function () {
           '%cred%cbold%citalic',
           'color:red',
           'font-weight:bold',
-          'font-style:italic',
+          'font-style:italic'
         )
       })
     })
