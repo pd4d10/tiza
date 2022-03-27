@@ -2,15 +2,19 @@
   "name": "tiza",
   "version": "2.2.1",
   "description": "Console styling for browsers",
-  "main": "dist/index.js",
-  "module": "dist/tiza.esm.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/tiza.common.js",
+  "module": "./dist/tiza.esm.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/tiza.esm.js",
+      "require": "./dist/tiza.common.js"
+    }
+  },
   "scripts": {
-    "start": "tsdx watch",
-    "build": "tsdx build",
-    "test": "tsdx test",
-    "lint": "tsdx lint",
-    "prepare": "tsdx build"
+    "dev": "norm",
+    "build": "norm build"
   },
   "files": [
     "dist"
@@ -22,13 +26,12 @@
     "color",
     "style"
   ],
-  "author": "Rongjian Zhang <pd4d10@gmail.com>",
+  "author": "Rongjian Zhang",
   "license": "MIT",
   "homepage": "https://github.com/pd4d10/tiza",
   "devDependencies": {
-    "@types/jest": "^25.1.3",
-    "tsdx": "^0.12.3",
-    "tslib": "^1.11.0",
-    "typescript": "^3.8.2"
+    "@norm/cli": "^0.4.28",
+    "@types/jest": "^27.4.1",
+    "typescript": "^4.6.3"
   }
 }

@@ -1,11 +1,8 @@
 {
-  "include": ["src", "types", "test"],
   "compilerOptions": {
     "target": "es5",
     "module": "esnext",
     "lib": ["dom", "esnext"],
-    "importHelpers": true,
-    "declaration": true,
     "sourceMap": true,
     "rootDir": "./",
     "strict": true,
