@@ -62,4 +62,5 @@ dist/
 
 bs/
 *.bs.js
-*.gen.tsx
+*.bs.ts
+*.d.ts

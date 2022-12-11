@@ -13,5 +13,10 @@
     }
   ],
   "suffix": ".bs.js",
-  "gentypeconfig": {}
+  "js-post-build": {
+    "cmd": "./post-build.sh"
+  },
+  "gentypeconfig": {
+    "generatedFileExtension": ".bs.ts"
+  }
 }
