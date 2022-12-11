@@ -1,5 +1,5 @@
-import { defineConfig } from 'tsdv'
+import { defineConfig } from "tsdv";
 
 export default defineConfig({
-  formats: ['es', 'cjs'],
-})
+  formats: ["es", "cjs"],
+});

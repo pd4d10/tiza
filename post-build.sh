@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
-tsc
+cd ../..
+npx tsc
+npx tsdv build
