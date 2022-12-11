@@ -1,3 +1,1 @@
-import { Tiza } from './tiza'
-
-export default new Tiza()
+import * as Tiza from "./Tiza.gen";

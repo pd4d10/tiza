@@ -60,4 +60,6 @@ typings/
 .rpt2_cache
 dist/
 
-norm-env.d.ts
+bs/
+*.bs.js
+*.gen.tsx
