@@ -4,6 +4,14 @@ type t = {
   styles: array<string>,
 }
 
+@genType
+let tiza = {
+  currentStyles: [],
+  texts: [],
+  styles: [],
+}
+
+@genType
 let style = (t, v) => {
   ...t,
   currentStyles: t.currentStyles->Js.Array2.concat([v]),
