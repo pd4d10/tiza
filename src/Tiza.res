@@ -62,10 +62,10 @@ let space = text(_, " ")
 let spaceN = (t, n) => text(t, " "->Js.String2.repeat(n))
 
 @genType
-let newLine = text(_, "\n")
+let newline = text(_, "\n")
 
 @genType
-let newLineN = (t, n) => text(t, "\n"->Js.String2.repeat(n))
+let newlineN = (t, n) => text(t, "\n"->Js.String2.repeat(n))
 
 type logType = [#log | #info | #warn | #error]
 
