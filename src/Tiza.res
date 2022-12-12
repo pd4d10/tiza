@@ -45,7 +45,9 @@ let reset = t => {
 let textN = (t, vs) => {
   ...t,
   texts: t.texts->Js.Array2.concat(vs),
-  styles: t.styles->Js.Array2.concat([t.currentStyles->Js.Array2.joinWith(";")]),
+  styles: t.styles->Js.Array2.concat(
+    vs->Js.Array2.map(_ => t.currentStyles->Js.Array2.joinWith(";")),
+  ),
 }
 
 let text = (t, v) => textN(t, [v])
