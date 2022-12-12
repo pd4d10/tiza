@@ -1,6 +1,6 @@
 # Tiza
 
-[<img src="https://raw.githubusercontent.com/pd4d10/tiza/master/assets/demo.png" alt="demo" width="468">](https://tiza.js.org)
+[<img src="https://raw.githubusercontent.com/pd4d10/tiza/main/assets/demo.png" alt="demo" width="468">](https://tiza.js.org)
 
 ![test](https://github.com/pd4d10/tiza/workflows/test/badge.svg) [![demo](https://github.com/pd4d10/tiza/workflows/deploy/badge.svg)](https://tiza.js.org) [![npm](https://img.shields.io/npm/v/tiza.svg)](https://www.npmjs.com/package/tiza) [![gzip size](https://img.badgesize.io/https://unpkg.com/tiza/dist/tiza.min.js?compression=gzip)](https://unpkg.com/tiza/dist/tiza.min.js)
 
@@ -19,9 +19,9 @@ npm install --save tiza
 Then import it:
 
 ```js
-import tiza from 'tiza'
+import tiza from "tiza";
 // or via require if you are using commonjs
-const tiza = require('tiza').default
+const tiza = require("tiza").default;
 ```
 
 ### UMD bundle
@@ -35,11 +35,11 @@ Add script tag to your HTML file:
 ## Usage
 
 ```js
-import tiza from 'tiza'
+import tiza from "tiza";
 
 tiza
-  .color('#fff') // Set color, all CSS colors are supported
-  .bgColor('purple') // Set background color
+  .color("#fff") // Set color, all CSS colors are supported
+  .bgColor("purple") // Set background color
   .bold() // Set bold font
   .italic() // Set italic font
   .size(20) // Set font size
@@ -48,18 +48,18 @@ tiza
   .style(`padding: 4px; border-radius: 2px;`)
 
   // After styles done right, it's time to add text now
-  .text('Hey, I have styling now!')
+  .text("Hey, I have styling now!")
 
   .space(8) // Add spaces
-  .text('Hey, I am far away from previous one')
+  .text("Hey, I am far away from previous one")
 
   .newline(2) // Add newline
 
   .reset() // Reset all styles set before
 
-  .text('I lost my styles, because `reset` is called')
+  .text("I lost my styles, because `reset` is called")
 
-  .log() // log all texts above to console
+  .log(); // log all texts above to console
 ```
 
 **Always remember** to call `log` method at last.
@@ -69,15 +69,15 @@ tiza
 To reuse styles, just make them nested like this:
 
 ```js
-const error = tiza.color('red').text
-const info = tiza.bold().bgColor('yellow').text
+const error = tiza.color("red").text;
+const info = tiza.bold().bgColor("yellow").text;
 
 tiza.log(
-  error('I am some error'),
-  'I am some normal message',
-  error('I am some error again!'),
-  info('I am some info', error('I am still some error!'))
-)
+  error("I am some error"),
+  "I am some normal message",
+  error("I am some error again!"),
+  info("I am some info", error("I am still some error!"))
+);
 ```
 
 Notice that inside texts will not extend outside texts' styles.
