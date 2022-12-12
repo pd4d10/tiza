@@ -10,6 +10,7 @@ import {
   size,
   reset,
   text,
+  combine,
   space,
   newline,
   logN,
@@ -41,8 +42,11 @@ export default wrap(tiza, {
     return typeof n === "number" ? size(t, n) : sizeRaw(t, n);
   },
   reset,
-  text(t: T, ...args: string[]) {
-    return args.reduce(text, t);
+  text(t: T, ...args: (string | T)[]) {
+    for (let arg of args) {
+      t = typeof arg === "string" ? text(t, arg) : combine(t, arg);
+    }
+    return t;
   },
   space(t: T, count = 1) {
     for (let i = 0; i < count; i++) {

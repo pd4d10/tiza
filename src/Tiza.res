@@ -49,6 +49,13 @@ let text = (t, v) => {
 }
 
 @genType
+let combine = (t, t1) => {
+  ...t,
+  texts: t.texts->Js.Array2.concat(t1.texts),
+  styles: t.styles->Js.Array2.concat(t1.styles),
+}
+
+@genType
 let space = text(_, " ")
 
 @genType
