@@ -30,22 +30,15 @@ let bold = style(_, "font-weight:bold")
 let italic = style(_, "font-style:italic")
 
 @genType
-let size = (t, s) => style(t, "font-size:" ++ s)
+let sizeS = (t, s) => style(t, "font-size:" ++ s)
 
 @genType
-let sizeF = (t, f) => size(t, f->Belt.Float.toString ++ "px")
+let size = (t, i) => sizeS(t, i->Belt.Int.toString ++ "px")
 
 @genType
 let reset = t => {
   ...t,
   currentStyles: [],
-}
-
-@genType
-let text = (t, v) => {
-  ...t,
-  texts: t.texts->Js.Array2.concat([v]),
-  styles: t.styles->Js.Array2.concat([t.currentStyles->Js.Array2.joinWith(";")]),
 }
 
 @genType
@@ -55,17 +48,17 @@ let textN = (t, vs) => {
   styles: t.styles->Js.Array2.concat([t.currentStyles->Js.Array2.joinWith(";")]),
 }
 
-@genType
-let space = text(_, " ")
+let text = (t, v) => textN(t, [v])
 
 @genType
 let spaceN = (t, n) => text(t, " "->Js.String2.repeat(n))
 
-@genType
-let newline = text(_, "\n")
+let space = spaceN(_, 1)
 
 @genType
 let newlineN = (t, n) => text(t, "\n"->Js.String2.repeat(n))
+
+let newline = newlineN(_, 1)
 
 let _output = (logFn, t, args) => {
   let ins = t->textN(args)
