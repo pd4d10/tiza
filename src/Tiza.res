@@ -67,9 +67,7 @@ let newline = text(_, "\n")
 @genType
 let newlineN = (t, n) => text(t, "\n"->Js.String2.repeat(n))
 
-type logType = [#log | #info | #warn | #error]
-
-let _output = (t, args) => {
+let _output = (logFn, t, args) => {
   let ins = t->textN(args)
   let text =
     ins.texts
@@ -79,8 +77,7 @@ let _output = (t, args) => {
     ->Js.Array2.joinWith("")
 
   let results = [text]->Js.Array2.concat(ins.styles)
-
-  Js.Console.logMany(results)
+  logFn(results)
 
   {
     ...t,
@@ -88,3 +85,23 @@ let _output = (t, args) => {
     styles: [],
   }
 }
+
+@genType
+let logN = _output(Js.Console.logMany)
+
+let log = (t, s) => logN(t, [s])
+
+@genType
+let infoN = _output(Js.Console.infoMany)
+
+let info = (t, s) => infoN(t, [s])
+
+@genType
+let warnN = _output(Js.Console.warnMany)
+
+let warn = (t, s) => warnN(t, [s])
+
+@genType
+let errorN = _output(Js.Console.errorMany)
+
+let error = (t, s) => errorN(t, [s])
