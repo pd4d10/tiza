@@ -6,12 +6,12 @@ import {
   bgColor,
   bold,
   italic,
-  sizeS,
+  sizeRaw,
   size,
   reset,
-  textN,
-  spaceN,
-  newlineN,
+  text,
+  space,
+  newline,
   logN,
   infoN,
   warnN,
@@ -38,17 +38,23 @@ export default wrap(tiza, {
   bold,
   italic,
   size(t: T, n: number | string) {
-    return typeof n === "number" ? size(t, n) : sizeS(t, n);
+    return typeof n === "number" ? size(t, n) : sizeRaw(t, n);
   },
   reset,
   text(t: T, ...args: string[]) {
-    return textN(t, args);
+    return args.reduce(text, t);
   },
   space(t: T, count = 1) {
-    return spaceN(t, count);
+    for (let i = 0; i < count; i++) {
+      t = space(t);
+    }
+    return t;
   },
   newline(t: T, count = 1) {
-    return newlineN(t, count);
+    for (let i = 0; i < count; i++) {
+      t = newline(t);
+    }
+    return t;
   },
   log(t: T, ...args: string[]) {
     return logN(t, args);
