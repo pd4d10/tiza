@@ -1,11 +1,13 @@
 name: test
-on: [push]
+on:
+  push:
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-      - run: yarn && yarn lint && yarn test
-        env:
-          CI: true
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - run: corepack enable
+      - run: pnpm install
+      - run: pnpm build
+      - run: pnpm test

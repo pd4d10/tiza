@@ -14,7 +14,8 @@
   },
   "scripts": {
     "dev": "tsdv watch",
-    "build": "tsdv build",
+    "dev:res": "rescript build -w",
+    "build": "rescript build && tsdv build",
     "test": "vitest"
   },
   "files": [
