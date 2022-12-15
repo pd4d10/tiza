@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
-import tiza from "../src";
+import tiza from ".";
 
 describe("tiza", function () {
   it("initial value", function () {

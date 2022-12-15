@@ -14,7 +14,8 @@
   },
   "scripts": {
     "dev": "tsdv watch",
-    "build": "tsdv build"
+    "build": "tsdv build",
+    "test": "vitest"
   },
   "files": [
     "dist"
