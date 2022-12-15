@@ -1,3 +1,4 @@
+import fi from "fluent-interface";
 import {
   t as T,
   tiza,
@@ -19,20 +20,7 @@ import {
   errorN,
 } from "./Tiza.bs";
 
-function wrap<T>(t: T, methods: Record<string, Function>): T {
-  const proto: Record<string, any> = {};
-  Object.keys(methods).forEach((name) => {
-    proto[name] = function (...args: any[]) {
-      const next = methods[name](this, ...args);
-      Object.setPrototypeOf(next, proto);
-      return next;
-    };
-  });
-  Object.setPrototypeOf(t, proto);
-  return t;
-}
-
-export default wrap(tiza, {
+export default fi(tiza, {
   style,
   color,
   bgColor,
