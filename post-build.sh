@@ -2,4 +2,3 @@
 
 cd ../..
 npx tsc
-npx tsdv build
