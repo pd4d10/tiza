@@ -55,12 +55,6 @@ let combine = (t, t1) => {
   styles: t.styles->Js.Array2.concat(t1.styles),
 }
 
-@genType
-let space = text(_, " ")
-
-@genType
-let newline = text(_, "\n")
-
 let _output = (logFn, t, texts) => {
   let ins = texts->Js.Array2.reduce(text, t)
 

@@ -72,9 +72,9 @@ describe("tiza", () => {
     it("save text", () => {
       expect(tiza.text("abc").texts).toEqual(["abc"]);
       expect(tiza.space().texts).toEqual([" "]);
-      expect(tiza.space(10).texts).toEqual(Array(10).fill(" "));
+      expect(tiza.space(10).texts).toEqual([" ".repeat(10)]);
       expect(tiza.newline().texts).toEqual(["\n"]);
-      expect(tiza.newline(10).texts).toEqual(Array(10).fill("\n"));
+      expect(tiza.newline(10).texts).toEqual(["\n".repeat(10)]);
     });
 
     it("save current style", () => {

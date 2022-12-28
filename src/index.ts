@@ -12,8 +12,6 @@ import {
   reset,
   text,
   combine,
-  space,
-  newline,
   logN,
   infoN,
   warnN,
@@ -36,18 +34,6 @@ export default fi(tiza, {
     }
     return t;
   },
-  space(t: T, count = 1) {
-    for (let i = 0; i < count; i++) {
-      t = space(t);
-    }
-    return t;
-  },
-  newline(t: T, count = 1) {
-    for (let i = 0; i < count; i++) {
-      t = newline(t);
-    }
-    return t;
-  },
   log(t: T, ...args: string[]) {
     return logN(t, args);
   },
@@ -59,5 +45,16 @@ export default fi(tiza, {
   },
   error(t: T, ...args: string[]) {
     return errorN(t, args);
+  },
+
+  // these methods seem to be a little redundant (use `text()` instead)
+  // but for backward compatibility we keep them
+  space(t: T, count = 1) {
+    t = text(t, " ".repeat(count));
+    return t;
+  },
+  newline(t: T, count = 1) {
+    t = text(t, "\n".repeat(count));
+    return t;
   },
 });
