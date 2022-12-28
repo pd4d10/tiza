@@ -13,15 +13,15 @@ tiza
   .color('#CC3399').bold().text('Tiza')
   .reset().text(' is a JavaScript library for browsers\' console styling.')
 
-  .newline(2)
+  .text("\n\n")
 
   .text('Support')
-  .space().color('#FF6666').text('All')
-  .space().color('#6666CC').text('CSS')
-  .space().color('#009933').text('colors')
+  .text(' ').color('#FF6666').text('All')
+  .text(' ').color('#6666CC').text('CSS')
+  .text(' ').color('#009933').text('colors')
   .reset().text(',')
 
-  .space().color('#fff').bgColor('#9933CC').text('background')
+  .text(' ').color('#fff').bgColor('#9933CC').text('background')
 
   .reset().text(', ')
   .bold().text('bold')
@@ -32,7 +32,7 @@ tiza
   .reset().text(', and ')
   .size(18).text('size')
 
-  .reset().newline(2)
+  .reset().text('\n\n')
 
   .text('Support ')
   .color('#fff').style(`
@@ -43,7 +43,7 @@ tiza
   .text('custom styles')
   .reset().text(' too!')
 
-  .reset().newline(2).text('Give it a try! ⚡️ https://github.com/pd4d10/tiza')
+  .reset().text('\n\n').text('Give it a try! ⚡️ https://github.com/pd4d10/tiza')
 
   // Always remember to call `log` at last to put all texts to console
   .log()

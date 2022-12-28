@@ -45,15 +45,12 @@ tiza
   .size(20) // Set font size
 
   // Support custom styles too!
-  .style(`padding: 4px; border-radius: 2px;`)
+  .style("padding: 4px; border-radius: 2px;")
 
   // After styles done right, it's time to add text now
   .text("Hey, I have styling now!")
 
-  .space(8) // Add spaces
-  .text("Hey, I am far away from previous one")
-
-  .newline(2) // Add newline
+  .text("\n") // Add newline
 
   .reset() // Reset all styles set before
 
@@ -104,8 +101,6 @@ For more detail see [API](#api)
 | `tiza.style('color:#f00')` | Set custom style, using inline style format |
 | `tiza.reset()` | Reset styles set before |
 | `tiza.text(...args: string[])` | Add text(s), support multiple arguments. Every text added here will be styled with styles set previously. Notice that every argument will be converted to string, and there will be no space between them(This behaviour is different with `console.log`). If you want to add a space, use `text('a').space().text('b')` |
-| `tiza.space(count?: number)` | Add space. The default count is 1 |
-| `tiza.newline(count?: number)` | Add newline. The default count is 1 |
 | `tiza.log()` | Log all texts to console with `console.log`. Always remember to call `log` at last. Arguments are also supported, `log(...args)` equals to `text(...args).log()` |
 | `tiza.info()` | The same as `tiza.log`, but output with `console.info` |
 | `tiza.warn()` | The same as `tiza.log`, but output with `console.warn` |
