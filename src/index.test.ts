@@ -1,15 +1,15 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
 import tiza from ".";
 
-describe("tiza", function () {
-  it("initial value", function () {
+describe("tiza", () => {
+  it("initial value", () => {
     expect(tiza.currentStyles).toEqual([]);
     expect(tiza.styles).toEqual([]);
     expect(tiza.texts).toEqual([]);
   });
 
-  describe("style methods", function () {
-    // it("always return an instance", function () {
+  describe("style methods", () => {
+    // it("always return an instance", ()=> {
     //   expect(tiza.style("color:red")).toEqual(jasmine.any(Tiza));
     //   expect(tiza.color("red")).toEqual(jasmine.any(Tiza));
     //   expect(tiza.bgColor("red")).toEqual(jasmine.any(Tiza));
@@ -19,7 +19,7 @@ describe("tiza", function () {
     //   expect(tiza.reset()).toEqual(jasmine.any(Tiza));
     // });
 
-    it("always return an new instance", function () {
+    it("always return an new instance", () => {
       expect(tiza.style("color:red")).not.toBe(tiza);
       expect(tiza.color("red")).not.toBe(tiza);
       expect(tiza.bgColor("red")).not.toBe(tiza);
@@ -29,7 +29,7 @@ describe("tiza", function () {
       expect(tiza.reset()).not.toBe(tiza);
     });
 
-    it("save style", function () {
+    it("save style", () => {
       expect(tiza.style("color:red").currentStyles).toEqual(["color:red"]);
       expect(tiza.color("red").currentStyles).toEqual(["color:red"]);
       expect(tiza.bgColor("red").currentStyles).toEqual([
@@ -41,7 +41,7 @@ describe("tiza", function () {
       expect(tiza.size(20).currentStyles).toEqual(["font-size:20px"]);
     });
 
-    it("method chaining", function () {
+    it("method chaining", () => {
       expect(tiza.style("color:red").bold().italic().currentStyles).toEqual([
         "color:red",
         "font-weight:bold",
@@ -49,27 +49,27 @@ describe("tiza", function () {
       ]);
     });
 
-    it("reset", function () {
+    it("reset", () => {
       expect(
         tiza.style("color:red").bgColor("black").reset().currentStyles
       ).toEqual([]);
     });
   });
 
-  describe("text methods", function () {
-    // it("always return an instance", function () {
+  describe("text methods", () => {
+    // it("always return an instance", ()=> {
     //   expect(tiza.text("abc")).toEqual(jasmine.any(Tiza));
     //   expect(tiza.space()).toEqual(jasmine.any(Tiza));
     //   expect(tiza.newline()).toEqual(jasmine.any(Tiza));
     // });
 
-    it("always return a new instance", function () {
+    it("always return a new instance", () => {
       expect(tiza.text("abc")).not.toBe(tiza);
       expect(tiza.space()).not.toBe(tiza);
       expect(tiza.newline()).not.toBe(tiza);
     });
 
-    it("save text", function () {
+    it("save text", () => {
       expect(tiza.text("abc").texts).toEqual(["abc"]);
       expect(tiza.space().texts).toEqual([" "]);
       expect(tiza.space(10).texts).toEqual(Array(10).fill(" "));
@@ -77,34 +77,34 @@ describe("tiza", function () {
       expect(tiza.newline(10).texts).toEqual(Array(10).fill("\n"));
     });
 
-    it("save current style", function () {
+    it("save current style", () => {
       expect(tiza.color("red").text("abc").styles).toEqual(["color:red"]);
       expect(tiza.color("red").space().styles).toEqual(["color:red"]);
       expect(tiza.color("red").newline().styles).toEqual(["color:red"]);
     });
 
-    it("keep previous styles", function () {
+    it("keep previous styles", () => {
       const i = tiza.color("red").text("a").bold().text("b");
       expect(i.texts).toEqual(["a", "b"]);
       expect(i.styles).toEqual(["color:red", "color:red;font-weight:bold"]);
     });
 
-    it("ignore no argument", function () {
+    it("ignore no argument", () => {
       expect(tiza.text().texts).toEqual([]);
     });
 
-    describe("multiple arguments", function () {
-      it("save all arguments", function () {
+    describe("multiple arguments", () => {
+      it("save all arguments", () => {
         expect(tiza.text("a", "b", "c").texts).toEqual(["a", "b", "c"]);
       });
 
-      it("save current style for all arguments", function () {
+      it("save current style for all arguments", () => {
         const i = tiza.color("red").text("a", "b", "c");
         expect(i.texts).toEqual(["a", "b", "c"]);
         expect(i.styles).toEqual(["color:red", "color:red", "color:red"]);
       });
 
-      it("support nesting", function () {
+      it("support nesting", () => {
         const a = tiza.color("red").text("a");
         const b = tiza.bold().text(a, "b");
         const c = tiza.italic().text(b, "c");
@@ -122,24 +122,24 @@ describe("tiza", function () {
 
   const types = ["log", "info", "warn", "error"] as const;
   types.forEach((type) => {
-    describe(type, function () {
-      beforeEach(function () {
+    describe(type, () => {
+      beforeEach(() => {
         vi.spyOn(console, type);
       });
 
-      it(`should call console.${type}`, function () {
+      it(`should call console.${type}`, () => {
         tiza.color("red").text("abc")[type]();
         expect(console[type]).toHaveBeenCalledTimes(1);
         expect(console[type]).toHaveBeenCalledWith("%cabc", "color:red");
       });
 
-      it("equal to text when argument passed", function () {
+      it("equal to text when argument passed", () => {
         tiza.color("red")[type]("abc");
         expect(console[type]).toHaveBeenCalledTimes(1);
         expect(console[type]).toHaveBeenCalledWith("%cabc", "color:red");
       });
 
-      it("handle nesting", function () {
+      it("handle nesting", () => {
         const a = tiza.color("red").text("red");
         const b = tiza.bold().text(a, "bold");
         const c = tiza.italic().text(b, "italic");
