@@ -14,7 +14,7 @@
   },
   "scripts": {
     "dev": "tsdv watch",
-    "build": "tsdv build",
+    "build": "rescript build && tsdv build",
     "test": "vitest"
   },
   "files": [
@@ -31,7 +31,6 @@
   "license": "MIT",
   "homepage": "https://github.com/pd4d10/tiza",
   "devDependencies": {
-    "@jihchi/vite-plugin-rescript": "^5.0.0",
     "rescript": "^10.1.0",
     "tsdv": "^0.8.0",
     "typescript": "^4.9.4",
