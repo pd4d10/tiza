@@ -120,12 +120,7 @@ describe("tiza", function () {
     });
   });
 
-  const types: ("log" | "info" | "warn" | "error")[] = [
-    "log",
-    "info",
-    "warn",
-    "error",
-  ];
+  const types = ["log", "info", "warn", "error"] as const;
   types.forEach((type) => {
     describe(type, function () {
       beforeEach(function () {
