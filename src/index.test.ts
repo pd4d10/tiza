@@ -139,6 +139,17 @@ describe("tiza", () => {
         expect(console[type]).toHaveBeenCalledWith("%cabc", "color:red");
       });
 
+      it("log with multiple arguments", () => {
+        tiza.color("red")[type]("abc", "def", "ghi");
+        expect(console[type]).toHaveBeenCalledTimes(1);
+        expect(console[type]).toHaveBeenCalledWith(
+          "%cabc%cdef%cghi",
+          "color:red",
+          "color:red",
+          "color:red"
+        );
+      });
+
       it("handle nesting", () => {
         const a = tiza.color("red").text("red");
         const b = tiza.bold().text(a, "bold");
